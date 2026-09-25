@@ -1,0 +1,106 @@
+---
+// src/components/ui/Footer.astro
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-main)] transition-colors duration-200 mt-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <!-- Col 1: Clinic Overview -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-[var(--color-primary-cyan)]/20 border border-[var(--color-primary-cyan)]/40 flex items-center justify-center text-[var(--color-primary-cyan)]">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2C8.5 2 6 4.5 6 7.5c0 2 .8 4.2 1.5 6.5.8 2.5 1.5 5 2.5 7 1 .5 2 1 2 .5.5-2.5 1.2-5 2-7.5.7-2.3 1.5-4.5 1.5-6.5C18 4.5 15.5 2 12 2z"></path>
+              <path d="M9.5 7.5a2.5 2.5 0 0 1 5 0"></path>
+            </svg>
+          </div>
+          <span class="text-base font-bold tracking-tight text-[var(--color-text-main)]">
+            Uniyal Oro Dental
+          </span>
+        </div>
+        <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+          Gentle, pain-free dental care, precision dental implants, and clear aligner orthodontics serving families across Balawala, Miyawala, and greater Dehradun.
+        </p>
+        <div class="flex items-center gap-2 text-xs font-semibold text-[var(--color-text-main)]">
+          <span class="inline-flex items-center text-amber-500">★★★★★</span>
+          <span>4.8 / 5.0 (43+ Google Reviews)</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Treatments -->
+      <div class="space-y-3">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-[var(--color-primary-cyan)]">
+          Treatments & Care
+        </h2>
+        <ul class="space-y-2 text-xs sm:text-sm text-[var(--color-text-muted)]">
+          <li><a href="/treatments" class="hover:text-[var(--color-primary-cyan)] transition-colors">Dental Implants & Bone Grafting</a></li>
+          <li><a href="/treatments" class="hover:text-[var(--color-primary-cyan)] transition-colors">Clear Aligners & Orthodontics</a></li>
+          <li><a href="/treatments" class="hover:text-[var(--color-primary-cyan)] transition-colors">Single-Sitting Painless RCT</a></li>
+          <li><a href="/treatments" class="hover:text-[var(--color-primary-cyan)] transition-colors">Cosmetic Smile Designing</a></li>
+          <li><a href="/treatments" class="hover:text-[var(--color-primary-cyan)] transition-colors">Teeth Whitening & Scaling</a></li>
+          <li><a href="/treatments" class="hover:text-[var(--color-primary-cyan)] transition-colors">Pediatric Dental Health</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Clinic Hours & Accessibility -->
+      <div class="space-y-3">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-[var(--color-primary-cyan)]">
+          Hours & Accessibility
+        </h2>
+        <div class="space-y-1.5 text-xs sm:text-sm text-[var(--color-text-muted)]">
+          <p class="font-medium text-[var(--color-text-main)]">Monday – Saturday:</p>
+          <p>Morning: 09:30 AM – 01:00 PM</p>
+          <p>Evening: 04:00 PM – 09:00 PM</p>
+          <p class="font-medium text-[var(--color-text-main)] pt-1">Sunday:</p>
+          <p class="text-emerald-600 font-semibold">By Prior Appointment</p>
+          <div class="pt-2 text-[11px] text-[var(--color-text-muted)]">
+            ♿ Wheelchair accessible · Hospital-grade sterilization autoclave
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 4: Location & Contact -->
+      <div class="space-y-3">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-[var(--color-primary-cyan)]">
+          Contact & Location
+        </h2>
+        <div class="space-y-2 text-xs sm:text-sm text-[var(--color-text-muted)]">
+          <p class="leading-relaxed">
+            <strong class="text-[var(--color-text-main)] block">Clinic Address:</strong>
+            Near Malsi Puliya, Balawala Main Road, Dehradun, Uttarakhand 248008 (Regd. No-4135)
+          </p>
+          <p>
+            <strong class="text-[var(--color-text-main)] block">Direct Phone:</strong>
+            <a href="tel:+917018021512" class="text-[var(--color-primary-cyan)] hover:underline font-semibold">
+              +91 70180 21512
+            </a>
+          </p>
+          <p>
+            <strong class="text-[var(--color-text-main)] block">WhatsApp:</strong>
+            <a
+              href="https://wa.me/917018021512?text=Hello%20Uniyal%20Dental%20Clinic,%20I%20would%20like%20to%20book%20a%20consultation."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-[var(--color-accent-emerald)] hover:underline font-semibold"
+            >
+              +91 70180 21512 (Chat Now)
+            </a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="mt-12 pt-8 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--color-text-muted)]">
+      <p>
+        © {currentYear} Uniyal Oro Dental Clinic & Implant Centre. All rights reserved.
+      </p>
+      <div class="flex items-center gap-4">
+        <span>Balawala · Miyawala · Nakronda · Dehradun</span>
+        <a href="/contact" class="hover:text-[var(--color-primary-cyan)] underline">Directions & Booking</a>
+      </div>
+    </div>
+  </div>
+</footer>

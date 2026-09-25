@@ -1,105 +1,452 @@
 ---
+import DentalVideos from "../components/ui/DentalVideos.astro";
+import GoogleMapSection from "../components/ui/GoogleMapSection.astro";
+import Testimonials from "../components/ui/Testimonials.astro";
 // src/pages/index.astro
-import Badge from "../components/ui/Badge.astro";
-import Button from "../components/ui/Button.astro";
-import Card from "../components/ui/Card.astro";
 import Layout from "../layouts/Layout.astro";
+
+import clinicOperatory from "../assets/images/dental_clinic_interior_1790351972272.jpg";
+// Authentic clinic images
+import drHappyPatient from "../assets/images/dr_uniyal_happy_patient_1790352789840.jpg";
+import drProcedure from "../assets/images/dr_uniyal_procedure_1790352853540.jpg";
+import clinicStorefront from "../assets/images/uniyal_clinic_storefront_1790352820357.jpg";
+
+const coreTreatments = [
+  {
+    title: "Dental Implants & Full Mouth Rehabilitation",
+    tag: "Specialized",
+    description:
+      "Permanent titanium tooth root replacement with computer-guided surgical precision and lifelong natural biting stability.",
+    icon: `<svg class="w-6 h-6 text-[#0D9488]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.5 2 6 4.5 6 7.5c0 2 .8 4.2 1.5 6.5.8 2.5 1.5 5 2.5 7 1 .5 2 1 2 .5.5-2.5 1.2-5 2-7.5.7-2.3 1.5-4.5 1.5-6.5C18 4.5 15.5 2 12 2z"></path><path d="M9.5 7.5a2.5 2.5 0 0 1 5 0"></path></svg>`,
+    link: "/treatments#implants",
+    featured: true,
+  },
+  {
+    title: "Laser Root Canal Treatment (RCT)",
+    tag: "Single-Sitting & Painless",
+    description:
+      "Save deeply infected teeth in a single 45-minute comfortable sitting using rotary endodontics with zero procedural discomfort.",
+    icon: `<svg class="w-6 h-6 text-[#0D9488]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>`,
+    link: "/treatments#rct",
+    featured: false,
+  },
+  {
+    title: "Smile Designing, Veneers & Teeth Whitening",
+    tag: "Aesthetic Design",
+    description:
+      "Custom porcelain veneers and gentle in-office laser whitening designed to enhance facial symmetry and brighten natural enamel.",
+    icon: `<svg class="w-6 h-6 text-[#0D9488]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
+    link: "/treatments#cosmetic",
+    featured: false,
+  },
+  {
+    title: "Invisible Aligners & Orthodontics",
+    tag: "Discreet Alignment",
+    description:
+      "Straighten crowded or spaced teeth with digital transparent aligners and ceramic braces without restrictive metal wires.",
+    icon: `<svg class="w-6 h-6 text-[#0D9488]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"></rect><path d="M7 8h10M7 12h10M7 16h10"></path></svg>`,
+    link: "/treatments#orthodontics",
+    featured: false,
+  },
+  {
+    title: "Pediatric & Family Preventive Care",
+    tag: "Gentle Family Care",
+    description:
+      "Stress-free examinations, cavity shields, and fluoride enamel treatments cultivating lifelong healthy dental habits for kids.",
+    icon: `<svg class="w-6 h-6 text-[#0D9488]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>`,
+    link: "/treatments#pediatric",
+    featured: false,
+  },
+  {
+    title: "Tooth Extractions & Oral Surgery",
+    tag: "Minimally Invasive",
+    description:
+      "Atraumatic surgical removal of impacted wisdom teeth and diseased roots protecting surrounding jawbone with rapid recovery.",
+    icon: `<svg class="w-6 h-6 text-[#0D9488]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`,
+    link: "/treatments#surgery",
+    featured: false,
+  },
+];
 ---
 
-<Layout title="Home" description="A production-ready website starter kit built with Astro 5+, Tailwind CSS v4, and TypeScript.">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-16 md:py-24 space-y-20">
-    <!-- Hero Section -->
-    <section class="text-center space-y-6 max-w-3xl mx-auto">
-      <div class="inline-flex items-center gap-2">
-        <Badge variant="info">Astro 5+</Badge>
-        <Badge variant="success">Tailwind CSS v4</Badge>
-        <Badge variant="neutral">Termux Ready</Badge>
+<Layout
+  title="Uniyal Oro Dental Clinic & Implant Centre | Balawala, Dehradun"
+  description="Painless Dental Precision & Advanced Implantology in Balawala, Dehradun. 4.8★ Rated clinical care led by Dr. Ashish Uniyal. Open daily 8:00 AM – 9:00 PM."
+>
+  <!-- 2. HERO SECTION (Asymmetric 60/40 Desktop Split Grid, Minimum Height: 85vh) -->
+  <section class="min-h-[85vh] flex items-center relative overflow-hidden bg-gradient-to-b from-[#F8FAFC] via-[#F1F5F9]/60 to-[#F8FAFC] border-b border-[#E2E8F0] py-12 md:py-16">
+    <!-- Ambient Calming Backdrop Glow -->
+    <div class="absolute top-10 left-1/4 w-[500px] h-[500px] bg-[#E6FFFA]/70 rounded-full blur-3xl pointer-events-none -z-10" aria-hidden="true"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <!-- Left Column: Visual Hierarchy Anchor (60%) -->
+        <div class="lg:col-span-7 space-y-6 text-left">
+          <!-- Pre-heading Badge: Pill shape, #E6FFFA background, #0D9488 text with Amber star -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E6FFFA] border border-[#0D9488]/30 shadow-xs">
+            <span class="text-[#D97706] font-bold text-xs">★</span>
+            <span class="text-xs font-bold text-[#0D9488]">4.8★ Rated Dental & Implant Care in Dehradun</span>
+          </div>
+
+          <!-- Primary Headline (H1, 44px–52px, Bold, #0F2537) -->
+          <h1 class="text-3xl sm:text-5xl lg:text-[50px] font-extrabold tracking-tight text-[#0F2537] leading-[1.15]">
+            Painless Dental Precision & Advanced Implantology.
+          </h1>
+
+          <!-- Subheading (18px, #475569, line-height: 1.6, max-width: 520px) -->
+          <p class="text-base sm:text-lg text-[#475569] leading-relaxed max-w-[520px]">
+            Transforming smiles with cutting-edge digital dentistry, specialized dental implants, and gentle, stress-free care for the entire family.
+          </p>
+
+          <!-- Action Cluster -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <!-- Primary: Book Consultation (Large #0D9488 button, tap target >= 48px) -->
+            <a
+              href="/contact"
+              class="inline-flex items-center justify-center gap-2 min-h-[48px] px-7 py-3 rounded-xl font-bold text-sm text-white bg-[#0D9488] hover:bg-[#0F766E] shadow-sm shadow-[#0D9488]/20 active:scale-95 transition-all text-center"
+              aria-label="Book Consultation at Uniyal Oro Dental"
+            >
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span>Book Consultation</span>
+            </a>
+
+            <!-- Secondary: WhatsApp Us (Outlined button with WhatsApp green icon #25D366) -->
+            <a
+              href="https://wa.me/917018021512?text=Hello%20Uniyal%20Dental%20Clinic,%20I%20would%20like%20to%20book%20a%20consultation."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl font-bold text-sm text-[#0F2537] bg-white border border-[#E2E8F0] hover:border-[#25D366] hover:text-[#25D366] shadow-xs active:scale-95 transition-all text-center"
+              aria-label="Chat on WhatsApp with clinic"
+            >
+              <svg class="w-4 h-4 text-[#25D366]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.031 2C6.5 2 2 6.5 2 12.03c0 1.97.58 3.82 1.6 5.37L2 22l4.78-1.55a10.02 10.02 0 005.25 1.58c5.53 0 10.03-4.5 10.03-10.03S17.56 2 12.03 2zm5.83 14.28c-.24.68-1.2 1.25-1.78 1.33-.53.07-1.22.1-3.53-.86-2.95-1.22-4.85-4.22-5-4.42-.14-.2-1.2-1.6-1.2-3.05s.76-2.17 1.03-2.47c.27-.3.59-.38.79-.38.2 0 .4 0 .58.01.19.01.44-.07.69.52.25.6.86 2.1.94 2.25.08.16.13.35.03.55-.1.2-.15.33-.3.51-.15.18-.32.4-.46.54-.15.15-.31.32-.13.63.18.31.79 1.3 1.7 2.11 1.17 1.04 2.15 1.36 2.46 1.51.31.15.49.13.67-.08.18-.21.78-.91.99-1.22.21-.31.42-.26.7-.15.28.11 1.78.84 2.08.99.3.15.5.23.58.36.08.13.08.76-.16 1.44z"/>
+              </svg>
+              <span>WhatsApp Us</span>
+            </a>
+          </div>
+
+          <!-- Instant Inline Trust Badges -->
+          <div class="pt-3 flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-semibold text-[#475569]">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#E2E8F0] shadow-2xs">
+              <span class="text-[#0D9488]">✓</span> 100% Sterilized Protocols
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#E2E8F0] shadow-2xs">
+              <span class="text-[#0D9488]">✓</span> Advanced 3D Implant Planning
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#E2E8F0] shadow-2xs">
+              <span class="text-[#0D9488]">✓</span> Painless Anesthesia
+            </span>
+          </div>
+        </div>
+
+        <!-- Right Column: Emotional Reassurance (40%) -->
+        <div class="lg:col-span-5 relative">
+          <!-- Curated high-resolution imagery featuring welcoming operatory and smile -->
+          <div class="relative rounded-3xl overflow-hidden border border-[#E2E8F0] shadow-xl bg-white group">
+            <img
+              src={drHappyPatient.src}
+              alt="Dr. Ashish Uniyal with smiling patient giving thumbs up in Balawala dental clinic"
+              class="w-full h-80 sm:h-96 object-cover object-top group-hover:scale-102 transition-transform duration-500"
+              loading="eager"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F2537]/80 via-transparent to-transparent flex flex-col justify-end p-5 text-white">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#E6FFFA]">
+                Balawala Facility · Dehradun
+              </span>
+              <p class="text-sm sm:text-base font-bold text-white">
+                Ultra-Hygienic Modern Operatory with Gentle Chairside Care
+              </p>
+            </div>
+          </div>
+
+          <!-- Floating Credibility Card (Glassmorphism overlay on image corner) -->
+          <div class="hidden sm:flex absolute -bottom-6 -left-6 bg-white/95 backdrop-blur-md border border-[#E2E8F0] rounded-2xl p-4 shadow-lg items-center gap-3.5 max-w-sm">
+            <div class="w-11 h-11 rounded-xl bg-[#E6FFFA] text-[#0D9488] flex items-center justify-center shrink-0 font-extrabold text-base">
+              10+
+            </div>
+            <div class="text-xs">
+              <p class="font-bold text-[#0F2537]">10+ Years of Clinical Trust</p>
+              <p class="text-[#475569] flex items-center gap-1 font-medium">
+                <span class="text-[#D97706]">★★★★★</span>
+                <span>4.8/5 Rating on Google (Balawala, Dehradun)</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3.1 CLINICAL AUTHORITY & METRICS STRIP -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 -mt-6 sm:-mt-8 relative z-20">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 p-4 sm:p-6 rounded-2xl bg-white border border-[#E2E8F0] shadow-md">
+      <!-- Stat 1: 4.8★ Patient Rating -->
+      <div class="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] text-left space-y-1">
+        <div class="flex items-center gap-1 text-[#D97706] font-bold text-base">
+          <span>★</span>
+          <span class="text-lg sm:text-xl font-extrabold text-[#0F2537]">4.8 / 5.0</span>
+        </div>
+        <p class="text-xs font-bold text-[#0F2537]">Patient Rating</p>
+        <p class="text-[11px] text-[#475569]">Google Verified Feedback</p>
       </div>
 
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-balance text-[var(--color-text-main)]">
-        Modern Web Architecture with <span class="text-[var(--color-accent)]">Web Client</span>
-      </h1>
+      <!-- Stat 2: Dedicated Implantology & Oral Surgery Centre -->
+      <div class="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] text-left space-y-1">
+        <p class="text-lg sm:text-xl font-extrabold text-[#0D9488]">Oral Surgery</p>
+        <p class="text-xs font-bold text-[#0F2537]">Implant Centre</p>
+        <p class="text-[11px] text-[#475569]">Certified Implantology</p>
+      </div>
 
-      <p class="text-lg sm:text-xl text-[var(--color-text-muted)] text-balance leading-relaxed">
-        A production-grade, accessible website starter kit designed for performance, strict TypeScript safety, OKLCH color design tokens, and Termux compatibility.
+      <!-- Stat 3: 100% Hospital-Grade Sterilization Protocols -->
+      <div class="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] text-left space-y-1">
+        <p class="text-lg sm:text-xl font-extrabold text-[#0D9488]">100% Sterile</p>
+        <p class="text-xs font-bold text-[#0F2537]">Hospital Protocol</p>
+        <p class="text-[11px] text-[#475569]">Class-B Autoclave Cleared</p>
+      </div>
+
+      <!-- Stat 4: Painless & Minimally Invasive Technology -->
+      <div class="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] text-left space-y-1">
+        <p class="text-lg sm:text-xl font-extrabold text-[#0D9488]">Zero Pain</p>
+        <p class="text-xs font-bold text-[#0F2537]">Micro-Anesthesia</p>
+        <p class="text-[11px] text-[#475569]">Gentle Rotary Tech</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3.2 CORE TREATMENT MATRIX (Modular Card Grid, 3 columns desktop, 1 column mobile) -->
+  <section class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 space-y-12" id="treatments" aria-labelledby="core-treatments-heading">
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E6FFFA] border border-[#0D9488]/30 text-xs font-bold text-[#0D9488]">
+        <span>🦷 Clinical Excellence</span>
+      </div>
+      <h2 id="core-treatments-heading" class="text-3xl sm:text-4xl font-extrabold text-[#0F2537] tracking-tight">
+        Core Clinical Treatments
+      </h2>
+      <p class="text-sm sm:text-base text-[#475569] leading-relaxed">
+        Personalized dental procedures delivered with micro-precision, strict sanitization, and compassionate chairside care in Balawala.
       </p>
+    </div>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center pt-2">
-        <Button href="/components" variant="primary" size="lg">
-          Explore Components
-        </Button>
-        <Button href="/about" variant="outline" size="lg">
-          Learn More
-        </Button>
-      </div>
-    </section>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      {coreTreatments.map((t) => (
+        <article
+          class:list={[
+            "card-hover-float rounded-2xl border p-6 sm:p-7 flex flex-col justify-between space-y-5 shadow-xs relative transition-all duration-200",
+            t.featured
+              ? "bg-white border-[#0D9488]/50 ring-1 ring-[#0D9488]/30"
+              : "bg-white border-[#E2E8F0]"
+          ]}
+        >
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class:list={[
+                "text-[11px] font-bold px-3 py-1 rounded-full border",
+                t.featured
+                  ? "bg-[#0D9488] text-white border-transparent"
+                  : "bg-[#E6FFFA] text-[#0D9488] border-[#0D9488]/30"
+              ]}>
+                {t.tag}
+              </span>
+              <div class="w-10 h-10 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-center" set:html={t.icon} />
+            </div>
 
-    <!-- Key Features Grid -->
-    <section class="space-y-8" aria-labelledby="features-heading">
-      <div class="text-center space-y-2">
-        <h2 id="features-heading" class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--color-text-main)]">
-          Engineered for Modern Reliability
+            <h3 class="text-xl font-bold tracking-tight text-[#0F2537]">
+              {t.title}
+            </h3>
+
+            <p class="text-sm text-[#475569] leading-relaxed line-clamp-2">
+              {t.description}
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-[#E2E8F0] flex items-center justify-between">
+            <a
+              href={t.link}
+              class="text-xs font-bold text-[#0D9488] hover:text-[#0F766E] inline-flex items-center gap-1 group"
+              aria-label={`Learn more about ${t.title}`}
+            >
+              <span>Learn More & Schedule</span>
+              <span class="transition-transform group-hover:translate-x-1">→</span>
+            </a>
+            <span class="text-[11px] text-[#475569] font-medium">Balawala Clinic</span>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- View Full Catalog Link -->
+    <div class="text-center pt-2">
+      <a
+        href="/treatments"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-bold text-[#0F2537] bg-white border border-[#E2E8F0] hover:border-[#0D9488] hover:text-[#0D9488] shadow-xs transition-all"
+      >
+        <span>View Full Clinical Catalog & Workflow Steps</span>
+        <span>→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 3.3 "THE UNIYAL ORO ASSURANCE" (Technology & Patient Comfort) -->
+  <section class="py-16 bg-[#F1F5F9]/70 border-y border-[#E2E8F0]" id="assurance" aria-labelledby="assurance-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#0D9488]">
+          The Uniyal Oro Assurance
+        </span>
+        <h2 id="assurance-heading" class="text-3xl font-extrabold text-[#0F2537]">
+          Predictable Precision & Total Patient Comfort
         </h2>
-        <p class="text-sm sm:text-base text-[var(--color-text-muted)]">
-          Built upon static-first principles with zero native runtime crashes.
+        <p class="text-sm text-[#475569]">
+          Every treatment is backed by hospital-grade protocols, advanced digital imaging, and unyielding transparency.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card
-          title="Static-First Architecture"
-          description="Astro static generation generates pre-rendered, lightweight HTML out of the box."
-        >
-          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Fast initial page loads, optimal core web vitals, and instant SEO crawlability with zero hydration penalties.
-          </p>
-          <div slot="footer">
-            <Badge variant="success" size="sm">Pre-rendered</Badge>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Feature 1: 3D Digital Diagnostic Imaging -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-white border border-[#E2E8F0] space-y-4 shadow-xs">
+          <div class="w-12 h-12 rounded-xl bg-[#E6FFFA] text-[#0D9488] flex items-center justify-center font-bold text-lg">
+            01
           </div>
-        </Card>
+          <h3 class="text-xl font-bold text-[#0F2537]">
+            3D Digital Diagnostic Imaging
+          </h3>
+          <p class="text-sm text-[#475569] leading-relaxed">
+            High-resolution digital RVG sensors and intraoral imaging guarantee predictable surgical implant placement and canal mapping with 90% less radiation.
+          </p>
+          <ul class="text-xs text-[#475569] space-y-1.5 pt-2 border-t border-[#E2E8F0]">
+            <li>✓ Computer-guided implant positioning</li>
+            <li>✓ Instant high-definition chairside scans</li>
+            <li>✓ Zero messy impression trays</li>
+          </ul>
+        </div>
 
-        <Card
-          title="Tailwind CSS v4 Engine"
-          description="Powered by the modern @tailwindcss/vite compiler with native OKLCH color spaces."
-        >
-          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Perceptually uniform colors with WCAG 2.2 AA contrast ratios, dynamic viewport heights, and zero PostCSS config bottlenecks.
-          </p>
-          <div slot="footer">
-            <Badge variant="info" size="sm">Vite Native</Badge>
+        <!-- Feature 2: Pain-Managed Sedation & Gentle Techniques -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-white border border-[#E2E8F0] space-y-4 shadow-xs">
+          <div class="w-12 h-12 rounded-xl bg-[#E6FFFA] text-[#0D9488] flex items-center justify-center font-bold text-lg">
+            02
           </div>
-        </Card>
+          <h3 class="text-xl font-bold text-[#0F2537]">
+            Pain-Managed Gentle Dentistry
+          </h3>
+          <p class="text-sm text-[#475569] leading-relaxed">
+            We use pre-numbing soothing topical gels, ultra-fine micro-needles, and rotary torque-controlled instruments so you remain totally relaxed and pain-free.
+          </p>
+          <ul class="text-xs text-[#475569] space-y-1.5 pt-2 border-t border-[#E2E8F0]">
+            <li>✓ Pre-injection anesthetic gel</li>
+            <li>✓ Single-sitting painless root canals</li>
+            <li>✓ Tell-show-do child comfort protocol</li>
+          </ul>
+        </div>
 
-        <Card
-          title="Termux & ARM64 Safe"
-          description="Pure JavaScript and WebAssembly tooling that builds anywhere without native crashes."
-        >
-          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Strict Biome linter, Node/TypeScript toolchains, and low-resource compatibility ensuring smooth operation on mobile and ARM.
-          </p>
-          <div slot="footer">
-            <Badge variant="neutral" size="sm">Cross-Platform</Badge>
+        <!-- Feature 3: Transparent Treatment Planning & Zero Surprise Costs -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-white border border-[#E2E8F0] space-y-4 shadow-xs">
+          <div class="w-12 h-12 rounded-xl bg-[#E6FFFA] text-[#0D9488] flex items-center justify-center font-bold text-lg">
+            03
           </div>
-        </Card>
+          <h3 class="text-xl font-bold text-[#0F2537]">
+            Transparent Planning & Zero Surprise Costs
+          </h3>
+          <p class="text-sm text-[#475569] leading-relaxed">
+            You receive a complete written clinical estimate prior to beginning any procedure. We prioritize conservative tooth preservation wherever possible.
+          </p>
+          <ul class="text-xs text-[#475569] space-y-1.5 pt-2 border-t border-[#E2E8F0]">
+            <li>✓ Clear written treatment estimates</li>
+            <li>✓ Natural tooth salvage prioritization</li>
+            <li>✓ Direct doctor consultation</li>
+          </ul>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Quick CTA Section -->
-    <section class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 md:p-12 text-center space-y-6">
-      <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-text-main)]">
-        Ready to build your next project?
-      </h2>
-      <p class="text-base text-[var(--color-text-muted)] max-w-xl mx-auto leading-relaxed">
-        Browse our comprehensive component showcase or connect with the team to start collaborating.
-      </p>
-      <div class="flex flex-wrap items-center justify-center gap-4">
-        <Button href="/contact" variant="primary">
-          Contact Us
-        </Button>
-        <Button href="/components" variant="secondary">
-          Component Gallery
-        </Button>
+  <!-- 3.4 CHIEF IMPLANTOLOGIST & CLINICAL TEAM PROFILE -->
+  <section class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6" id="doctors" aria-labelledby="team-heading">
+    <div class="rounded-3xl border border-[#E2E8F0] bg-white p-6 sm:p-12 shadow-sm space-y-10">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#0D9488]">
+          Clinical Credibility & Care
+        </span>
+        <h2 id="team-heading" class="text-3xl font-extrabold text-[#0F2537]">
+          Meet Dr. Ashish Uniyal & The Surgical Team
+        </h2>
+        <p class="text-sm text-[#475569]">
+          Registered, university-certified dental surgeons providing compassionate care in Balawala.
+        </p>
       </div>
-    </section>
-  </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative rounded-2xl overflow-hidden border-2 border-[#E2E8F0] shadow-md max-w-sm">
+            <img
+              src={drHappyPatient.src}
+              alt="Dr. Ashish Uniyal Oral and Dental Surgeon"
+              class="w-full h-80 object-cover object-top"
+              loading="lazy"
+            />
+            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0F2537]/90 to-transparent p-4 text-white text-xs">
+              <p class="font-bold text-sm">Dr. Ashish Uniyal</p>
+              <p class="text-slate-200">Oral & Dental Surgeon · Regd. No-4135</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 space-y-5 text-left">
+          <div class="space-y-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#0D9488]">
+              Chief Implantologist & Surgeon
+            </span>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-[#0F2537]">
+              Dr. Ashish Uniyal, BDS, MDS
+            </h3>
+            <p class="text-sm text-[#0D9488] font-semibold">
+              Oral & Dental Surgeon · Hemwati Nandan Bahuguna Medical University Alumni
+            </p>
+          </div>
+
+          <p class="text-sm sm:text-base text-[#475569] leading-relaxed">
+            With advanced certifications in oral implantology, digital rotary endodontics, and bone grafting, Dr. Uniyal leads our Balawala clinic with an empathetic principle: <em>"Treat every patient like family, prioritize natural tooth salvage, and make every procedure thoroughly pain-free."</em>
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs">
+            <div class="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0]">
+              <strong class="text-[#0F2537] block">Dr. Ashish Lakhera</strong>
+              <p class="text-[#475569]">Consultant Dental Surgeon specializing in aesthetic smile designing and orthodontics.</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0]">
+              <strong class="text-[#0F2537] block">State Dental Council Registered</strong>
+              <p class="text-[#475569]">Regd. No-4135 · Strict adherence to national and IDA ethical clinical standards.</p>
+            </div>
+          </div>
+
+          <div class="pt-2 flex flex-wrap items-center gap-3">
+            <a
+              href="/contact"
+              class="px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-[#0D9488] hover:bg-[#0F766E] transition-colors shadow-xs"
+            >
+              Consult with Dr. Uniyal
+            </a>
+            <a
+              href="https://wa.me/917018021512?text=Hello%20Dr.%20Uniyal,%20I%20would%20like%20to%20book%20a%20consultation."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-5 py-2.5 rounded-xl text-xs font-bold text-[#0F2537] bg-white border border-[#E2E8F0] hover:bg-slate-50 transition-colors"
+            >
+              💬 Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3D ANIMATED DENTAL VIDEO SIMULATIONS -->
+  <DentalVideos />
+
+  <!-- 3.5 PATIENT TESTIMONIALS & GOOGLE REVIEWS (Social Proof) -->
+  <Testimonials />
+
+  <!-- 3.6 LOCAL CONVENIENCE, TIMINGS & INTERACTIVE GEO-MAP -->
+  <GoogleMapSection />
 </Layout>

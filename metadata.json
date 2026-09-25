@@ -1,6 +1,6 @@
 {
-  "name": "Web Client",
-  "description": "Production-ready website starter kit built with Astro 5+, Tailwind CSS v4, TypeScript, and Biome.",
+  "name": "Uniyal Oro Dental Clinic & Implant Centre",
+  "description": "Gentle, Pain-Free Dental Care & Advanced Implants in Balawala, Dehradun, Uttarakhand.",
   "capabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"],
   "permissions": []
 }

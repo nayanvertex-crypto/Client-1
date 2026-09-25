@@ -11,9 +11,54 @@ interface Props {
 }
 
 const {
-  title = "Web Client",
-  description = "Production-ready website starter kit built with Astro 5+, Tailwind CSS v4, and TypeScript.",
+  title = "Uniyal Oro Dental Clinic & Implant Centre",
+  description = "Painless Dental Precision & Advanced Implantology in Balawala, Dehradun. 4.8★ Rated clinical care led by Dr. Ashish Uniyal. Open daily 8:00 AM – 9:00 PM.",
 } = Astro.props;
+
+const clinicSchema = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  name: "Uniyal Oro Dental Clinic & Implant Centre",
+  image: "https://uniyalorodental.com/clinic-preview.jpg",
+  telephone: "+91 70180 21512",
+  url: "https://uniyalorodental.com",
+  priceRange: "₹₹",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Malsi Puliya, Balawala Main Road",
+    addressLocality: "Balawala, Dehradun",
+    addressRegion: "Uttarakhand",
+    postalCode: "248008",
+    addressCountry: "IN",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 30.2618,
+    longitude: 78.0934,
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    reviewCount: "43",
+    bestRating: "5",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      opens: "08:00",
+      closes: "21:00",
+    },
+  ],
+  medicalSpecialty: [
+    "Dentistry",
+    "Oral and Maxillofacial Surgery",
+    "Orthodontics",
+    "Periodontics",
+    "Prosthodontics",
+    "Endodontics",
+  ],
+};
 ---
 
 <!DOCTYPE html>
@@ -22,39 +67,42 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="oklch(0.550 0.220 260)" />
+    <meta name="keywords" content="Dentist in Balawala, Dental clinic Dehradun, Dental implants Balawala, RCT Dehradun, Braces Miyawala, Teeth whitening Nakronda, Uniyal Dental Clinic" />
+    <meta name="theme-color" content="#0F2537" />
     <meta name="robots" content="index, follow" />
-    <meta name="author" content="Development Team" />
-    <title>{title} | Web Client</title>
+    <meta name="author" content="Uniyal Oro Dental Clinic" />
+
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- OpenGraph / Social Cards -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={`${title} | Uniyal Dental Balawala`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Uniyal Oro Dental Clinic & Implant Centre" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | Uniyal Dental Balawala`} />
+    <meta name="twitter:description" content={description} />
+
+    <title>{title} | Uniyal Oro Dental Balawala</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(clinicSchema)} />
 
     <!-- Astro View Transitions Engine -->
     <ClientRouter />
-
-    <!-- Theme Initialization Script (Prevents FOUC & preserves theme on navigation) -->
-    <script is:inline>
-      function applyTheme() {
-        try {
-          const stored = localStorage.getItem("theme");
-          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-          if (stored === "dark" || (!stored && prefersDark)) {
-            document.documentElement.classList.add("dark");
-            document.documentElement.classList.remove("light");
-          } else {
-            document.documentElement.classList.remove("dark");
-            document.documentElement.classList.add("light");
-          }
-        } catch (_) {}
-      }
-      applyTheme();
-      document.addEventListener("astro:after-swap", applyTheme);
-    </script>
   </head>
-  <body class="bg-[var(--color-canvas)] text-[var(--color-text-main)] min-h-[100dvh] flex flex-col transition-colors duration-200 selection:bg-[var(--color-accent)] selection:text-white">
+  <body class="bg-[#F8FAFC] text-[#0F2537] min-h-[100dvh] flex flex-col selection:bg-[#0D9488] selection:text-white pb-20 md:pb-0">
     <!-- Subtle navigation progress indicator -->
     <div
       id="nav-progress-bar"
-      class="fixed top-0 left-0 right-0 h-[2.5px] bg-[var(--color-accent)] z-50 transform origin-left scale-x-0 opacity-0 pointer-events-none transition-transform duration-300 ease-out shadow-[0_0_8px_var(--color-accent)]"
+      class="fixed top-0 left-0 right-0 h-[2.5px] bg-[#0D9488] z-50 transform origin-left scale-x-0 opacity-0 pointer-events-none transition-transform duration-300 ease-out shadow-[0_0_8px_#0D9488]"
       aria-hidden="true"
     ></div>
 
@@ -65,6 +113,38 @@ const {
     </main>
 
     <Footer />
+
+    <!-- Mobile Bottom Sticky Conversion Bar (Visible only on mobile screens < 768px) -->
+    <aside
+      class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-[#E2E8F0] p-2.5 px-4 shadow-xl flex items-center justify-between gap-3"
+      aria-label="Mobile Quick Action Bar"
+    >
+      <!-- Left Button: Call Clinic (Background: #0F2537, Text: #FFFFFF) -->
+      <a
+        href="tel:+917018021512"
+        class="flex-1 inline-flex items-center justify-center gap-2 py-3 px-3 rounded-xl text-xs font-bold text-white bg-[#0F2537] hover:bg-slate-800 shadow-sm active:scale-95 transition-all text-center"
+        aria-label="Call Uniyal Oro Dental Clinic"
+      >
+        <svg class="w-4 h-4 text-[#0D9488]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+        <span>📞 Call Clinic</span>
+      </a>
+
+      <!-- Right Button: WhatsApp Us (Background: #25D366, Text: #FFFFFF) -->
+      <a
+        href="https://wa.me/917018021512?text=Hello%20Uniyal%20Dental%20Clinic,%20I%20would%20like%20to%20book%20a%20consultation."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex-1 inline-flex items-center justify-center gap-2 py-3 px-3 rounded-xl text-xs font-bold text-white bg-[#25D366] hover:bg-emerald-600 shadow-sm active:scale-95 transition-all text-center"
+        aria-label="WhatsApp Us"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.031 2C6.5 2 2 6.5 2 12.03c0 1.97.58 3.82 1.6 5.37L2 22l4.78-1.55a10.02 10.02 0 005.25 1.58c5.53 0 10.03-4.5 10.03-10.03S17.56 2 12.03 2zm5.83 14.28c-.24.68-1.2 1.25-1.78 1.33-.53.07-1.22.1-3.53-.86-2.95-1.22-4.85-4.22-5-4.42-.14-.2-1.2-1.6-1.2-3.05s.76-2.17 1.03-2.47c.27-.3.59-.38.79-.38.2 0 .4 0 .58.01.19.01.44-.07.69.52.25.6.86 2.1.94 2.25.08.16.13.35.03.55-.1.2-.15.33-.3.51-.15.18-.32.4-.46.54-.15.15-.31.32-.13.63.18.31.79 1.3 1.7 2.11 1.17 1.04 2.15 1.36 2.46 1.51.31.15.49.13.67-.08.18-.21.78-.91.99-1.22.21-.31.42-.26.7-.15.28.11 1.78.84 2.08.99.3.15.5.23.58.36.08.13.08.76-.16 1.44z"/>
+        </svg>
+        <span>💬 WhatsApp Us</span>
+      </a>
+    </aside>
 
     <script>
       function setupProgressIndicator() {

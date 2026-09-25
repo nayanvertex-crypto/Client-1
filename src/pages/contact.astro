@@ -1,163 +1,295 @@
 ---
+import clinicStorefront from "../assets/images/uniyal_clinic_storefront_1790352820357.jpg";
+import GoogleMapSection from "../components/ui/GoogleMapSection.astro";
 // src/pages/contact.astro
-import Badge from "../components/ui/Badge.astro";
-import Button from "../components/ui/Button.astro";
-import Card from "../components/ui/Card.astro";
-import Input from "../components/ui/Input.astro";
 import Layout from "../layouts/Layout.astro";
+
+const clinicPhone = "+91 70180 21512";
+const whatsappUrl =
+  "https://wa.me/917018021512?text=Hello%20Uniyal%20Dental%20Clinic,%20I%20would%20like%20to%20book%20a%20consultation.";
 ---
 
-<Layout title="Contact" description="Get in touch with the Web Client team.">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-16 md:py-24 space-y-12">
-    <header class="space-y-4">
-      <Badge variant="info">Connect With Us</Badge>
-      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-balance text-[var(--color-text-main)]">
-        Get in Touch
+<Layout
+  title="Book Visit & Clinic Directions"
+  description="Schedule your dental appointment or visit Uniyal Oro Dental Clinic & Implant Centre near Malsi Puliya in Balawala, Dehradun. Call or WhatsApp +91 70180 21512."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-16">
+    <header class="text-center max-w-3xl mx-auto space-y-4">
+      <span class="text-xs font-bold uppercase tracking-wider text-[var(--color-primary-cyan)]">
+        Appointments & Clinical Directions
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-[var(--color-text-main)]">
+        Schedule Your Visit to Uniyal Oro Dental
       </h1>
-      <p class="text-lg text-[var(--color-text-muted)] text-balance leading-relaxed">
-        Have a question, feedback, or want to collaborate? Send us a message and we will respond promptly.
+      <p class="text-base text-[var(--color-text-muted)] leading-relaxed">
+        Reserve your consultation slot online, message on WhatsApp, or call directly. Same-day emergency appointments reserved for acute toothache and infections.
       </p>
     </header>
 
-    <Card>
-      <form id="contactForm" method="POST" action="/api/contact" class="space-y-6">
-        <Input
-          label="Your Name"
-          name="name"
-          placeholder="Alex Johnson"
-          required
-          minlength={2}
-          maxlength={100}
-        />
-
-        <Input
-          label="Email Address"
-          name="email"
-          type="email"
-          placeholder="alex@domain.com"
-          required
-          helperText="We will never share or sell your email address."
-        />
-
-        <div class="w-full space-y-1.5 text-left">
-          <label for="field-message" class="block text-sm font-semibold text-[var(--color-text-main)]">
-            Message <span class="text-[var(--color-danger)] ml-0.5" aria-hidden="true">*</span>
-          </label>
-          <textarea
-            id="field-message"
-            name="message"
-            required
-            minlength={10}
-            maxlength={1000}
-            rows={5}
-            placeholder="Tell us about your project or inquiry..."
-            class="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] text-base text-[var(--color-text-main)] bg-[var(--color-surface-elevated)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent resize-y min-h-[120px]"
-          ></textarea>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      <!-- Left Column: Interactive Booking Form -->
+      <div class="lg:col-span-7 rounded-3xl border border-[#E2E8F0] bg-white p-6 sm:p-10 shadow-sm space-y-8">
+        <div class="space-y-2 border-b border-[#E2E8F0] pb-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-bold text-[#0F2537]">
+              Consultation Booking Form
+            </h2>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#E6FFFA] text-[#0D9488] border border-[#0D9488]/30">
+              Quick Confirmation
+            </span>
+          </div>
+          <p class="text-xs text-[#475569]">
+            Fill in your preferred details. Our clinic reception will call or WhatsApp you within 30 minutes to confirm your token.
+          </p>
         </div>
 
-        <div class="pt-2">
-          <Button type="submit" variant="primary" class="w-full sm:w-auto">
-            Send Message
-          </Button>
-        </div>
-      </form>
+        <form id="appointmentForm" class="space-y-5" novalidate>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Full Name -->
+            <div class="space-y-1.5 text-left">
+              <label for="field-name" class="block text-xs font-bold text-[#0F2537]">
+                Patient Full Name <span class="text-rose-500">*</span>
+              </label>
+              <input
+                id="field-name"
+                name="name"
+                type="text"
+                required
+                minlength="2"
+                maxlength="100"
+                placeholder="e.g. Ramesh Joshi"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-sm text-[#0F2537] focus:outline-none focus:ring-2 focus:ring-[#0D9488] transition-all"
+              />
+            </div>
 
-      <div
-        id="formFeedback"
-        class="mt-6 p-4 rounded-lg hidden text-sm font-medium leading-relaxed"
-        role="alert"
-        aria-live="polite"
-      ></div>
-    </Card>
+            <!-- Phone Number -->
+            <div class="space-y-1.5 text-left">
+              <label for="field-phone" class="block text-xs font-bold text-[#0F2537]">
+                Mobile / WhatsApp Number <span class="text-rose-500">*</span>
+              </label>
+              <input
+                id="field-phone"
+                name="phone"
+                type="tel"
+                required
+                placeholder="e.g. 9876543210"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-sm text-[#0F2537] focus:outline-none focus:ring-2 focus:ring-[#0D9488] transition-all"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Treatment Category -->
+            <div class="space-y-1.5 text-left">
+              <label for="field-treatment" class="block text-xs font-bold text-[#0F2537]">
+                Primary Concern / Treatment
+              </label>
+              <select
+                id="field-treatment"
+                name="treatment"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-sm text-[#0F2537] focus:outline-none focus:ring-2 focus:ring-[#0D9488] transition-all cursor-pointer"
+              >
+                <option value="General Consultation & Checkup">General Consultation & Checkup</option>
+                <option value="Dental Implants & Bone Grafting">Dental Implants & Bone Grafting</option>
+                <option value="Orthodontics / Clear Aligners">Orthodontics / Clear Aligners</option>
+                <option value="Single-Sitting Painless RCT">Single-Sitting Painless RCT</option>
+                <option value="Cosmetic Smile Designing & Whitening">Cosmetic Smile Designing & Whitening</option>
+                <option value="Pediatric Child Dental Care">Pediatric Child Dental Care</option>
+                <option value="Emergency Toothache / Swelling">Emergency Toothache / Swelling</option>
+              </select>
+            </div>
+
+            <!-- Preferred Time Slot -->
+            <div class="space-y-1.5 text-left">
+              <label for="field-time" class="block text-xs font-bold text-[#0F2537]">
+                Preferred Time Slot
+              </label>
+              <select
+                id="field-time"
+                name="preferredTime"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-sm text-[#0F2537] focus:outline-none focus:ring-2 focus:ring-[#0D9488] transition-all cursor-pointer"
+              >
+                <option value="Morning (09:30 AM - 01:00 PM)">Morning (09:30 AM - 01:00 PM)</option>
+                <option value="Evening (04:00 PM - 09:00 PM)">Evening (04:00 PM - 09:00 PM)</option>
+                <option value="Earliest Available (Emergency)">Earliest Available (Emergency)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Message / Symptoms -->
+          <div class="space-y-1.5 text-left">
+            <label for="field-message" class="block text-xs font-bold text-[#0F2537]">
+              Brief Symptoms or Notes (Optional)
+            </label>
+            <textarea
+              id="field-message"
+              name="message"
+              rows="3"
+              placeholder="e.g. Tooth sensitivity on upper left side or missing lower tooth..."
+              class="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-sm text-[#0F2537] focus:outline-none focus:ring-2 focus:ring-[#0D9488] transition-all resize-y"
+            ></textarea>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3 pt-2">
+            <button
+              id="submitBtn"
+              type="submit"
+              class="flex-1 py-3 px-6 rounded-xl font-bold text-sm text-white bg-[#0D9488] hover:bg-[#0F766E] shadow-sm active:scale-95 transition-all text-center cursor-pointer"
+            >
+              Submit Appointment Request
+            </button>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="py-3 px-5 rounded-xl font-bold text-sm text-white bg-[#25D366] hover:bg-emerald-600 shadow-xs active:scale-95 transition-all text-center inline-flex items-center justify-center gap-2"
+              aria-label="Book via WhatsApp immediately"
+            >
+              <span>Instant WhatsApp</span>
+            </a>
+          </div>
+
+          <!-- Form Feedback Message -->
+          <div
+            id="formFeedback"
+            class="hidden p-4 rounded-xl text-xs sm:text-sm font-medium leading-relaxed"
+            role="alert"
+          ></div>
+        </form>
+      </div>
+
+      <!-- Right Column: Clinic Identity & Landmark Showcase -->
+      <div class="lg:col-span-5 space-y-6">
+        <!-- Storefront Photo Card -->
+        <div class="rounded-3xl border border-[#E2E8F0] bg-white overflow-hidden shadow-xs">
+          <div class="h-52 overflow-hidden relative">
+            <img
+              src={clinicStorefront.src}
+              alt="Uniyal Oro Dental Clinic building near Malsi Puliya Balawala"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute top-3 left-3 bg-[#0F2537]/85 backdrop-blur-md px-3 py-1 rounded-full text-white text-[11px] font-bold">
+              दांतों का अस्पताल
+            </div>
+          </div>
+          <div class="p-6 space-y-3">
+            <h3 class="text-lg font-bold text-[#0F2537]">
+              Uniyal Oro Dental Clinic & Implant Centre
+            </h3>
+            <p class="text-xs text-[#475569] leading-relaxed">
+              Near Malsi Puliya, Balawala, Dehradun (Uk) · Regd. No-4135
+            </p>
+            <div class="flex items-center gap-2 text-xs font-semibold text-[#0D9488]">
+              <span>📞 Phone: +91 70180 21512</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Consultation Timing Badge -->
+        <div class="rounded-3xl border border-[#E2E8F0] bg-white p-6 space-y-3 shadow-xs text-xs">
+          <h4 class="font-bold text-[#0F2537] text-sm">Consultation Timings:</h4>
+          <div class="space-y-1.5 text-[#475569]">
+            <p class="flex justify-between py-1 border-b border-[#E2E8F0]">
+              <span>Morning Shift:</span>
+              <strong class="text-[#0F2537]">9:30 AM – 1:00 PM</strong>
+            </p>
+            <p class="flex justify-between py-1 border-b border-[#E2E8F0]">
+              <span>Evening Shift:</span>
+              <strong class="text-[#0F2537]">4:00 PM – 9:00 PM</strong>
+            </p>
+            <p class="flex justify-between py-1">
+              <span>Sunday:</span>
+              <span class="text-emerald-600 font-semibold">By Prior Appointment</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Embedded Google Map Component -->
+    <GoogleMapSection />
   </div>
 </Layout>
 
 <script>
-  import { contactFormSchema } from "../lib/schemas";
+  function setupBookingForm() {
+    const form = document.getElementById("appointmentForm") as HTMLFormElement | null;
+    const feedback = document.getElementById("formFeedback") as HTMLDivElement | null;
+    const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement | null;
 
-  const form = document.getElementById("contactForm") as HTMLFormElement | null;
-  const feedback = document.getElementById("formFeedback") as HTMLDivElement | null;
-
-  // Safe escape function for client-side text rendering
-  const escapeHTML = (str: string): string => {
-    const htmlEscapes: Record<string, string> = {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;",
-    };
-    return str.replace(/[&<>"']/g, (char) => htmlEscapes[char] || char);
-  };
-
-  if (form && feedback) {
-    let abortController: AbortController | null = null;
+    if (!form || !feedback) return;
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       feedback.classList.add("hidden");
       feedback.textContent = "";
 
-      // Cancel previous pending request to avoid race condition
-      if (abortController) {
-        abortController.abort();
-      }
-      abortController = new AbortController();
-
       const formData = new FormData(form);
-      const data = {
-        name: String(formData.get("name") || ""),
-        email: String(formData.get("email") || ""),
-        message: String(formData.get("message") || ""),
-      };
+      const name = String(formData.get("name") || "").trim();
+      const phone = String(formData.get("phone") || "").trim();
+      const treatment = String(formData.get("treatment") || "General Consultation");
+      const preferredTime = String(formData.get("preferredTime") || "Morning");
+      const message = String(formData.get("message") || "").trim() || "Consultation appointment request";
 
-      // Validate with safe Zod schema
-      const result = contactFormSchema.safeParse(data);
-
-      if (!result.success) {
-        const errors = result.error.issues.map((err) => `${err.message}`).join(", ");
-        feedback.textContent = `Validation failed: ${escapeHTML(errors)}`;
-        feedback.className =
-          "mt-6 p-4 rounded-lg bg-[oklch(0.58_0.24_27/0.12)] border border-[oklch(0.58_0.24_27/0.3)] text-[oklch(0.48_0.24_27)] dark:text-[oklch(0.75_0.20_27)]";
+      if (name.length < 2) {
+        feedback.textContent = "Please enter your full name (minimum 2 characters).";
+        feedback.className = "p-4 rounded-xl text-xs bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300";
         feedback.classList.remove("hidden");
         return;
       }
 
-      // Send to API with AbortController
+      if (phone.replace(/[^0-9]/g, "").length < 10) {
+        feedback.textContent = "Please enter a valid 10-digit mobile number for appointment confirmation.";
+        feedback.className = "p-4 rounded-xl text-xs bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300";
+        feedback.classList.remove("hidden");
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting Request...";
+      }
+
       try {
         const response = await fetch("/api/contact", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
-          signal: abortController.signal,
+          body: JSON.stringify({
+            name,
+            phone,
+            treatment,
+            preferredTime,
+            message,
+          }),
         });
 
         const resData = await response.json();
 
         if (response.ok && resData.success) {
-          feedback.textContent = "Thank you! Your message has been sent successfully.";
-          feedback.className =
-            "mt-6 p-4 rounded-lg bg-[oklch(0.62_0.17_145/0.12)] border border-[oklch(0.62_0.17_145/0.3)] text-[oklch(0.45_0.18_145)] dark:text-[oklch(0.75_0.16_145)]";
+          feedback.textContent = `✓ ${resData.message} (Ref: ${resData.referenceId || "Confirmed"})`;
+          feedback.className = "p-4 rounded-xl text-xs bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300";
           feedback.classList.remove("hidden");
           form.reset();
         } else {
-          const errorMsg = typeof resData.error === "string" ? resData.error : "Submission failed.";
-          feedback.textContent = escapeHTML(errorMsg);
-          feedback.className =
-            "mt-6 p-4 rounded-lg bg-[oklch(0.58_0.24_27/0.12)] border border-[oklch(0.58_0.24_27/0.3)] text-[oklch(0.48_0.24_27)] dark:text-[oklch(0.75_0.20_27)]";
+          feedback.textContent = resData.error || "Unable to submit appointment request. Please call +91 70180 21512.";
+          feedback.className = "p-4 rounded-xl text-xs bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300";
           feedback.classList.remove("hidden");
         }
-      } catch (err: unknown) {
-        if (err instanceof Error && err.name === "AbortError") {
-          return;
-        }
-        feedback.textContent = "Network error. Please check your connection and try again.";
-        feedback.className =
-          "mt-6 p-4 rounded-lg bg-[oklch(0.58_0.24_27/0.12)] border border-[oklch(0.58_0.24_27/0.3)] text-[oklch(0.48_0.24_27)] dark:text-[oklch(0.75_0.20_27)]";
+      } catch {
+        feedback.textContent = "Network error. Please call us directly at +91 70180 21512 or message on WhatsApp.";
+        feedback.className = "p-4 rounded-xl text-xs bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300";
         feedback.classList.remove("hidden");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Submit Appointment Request";
+        }
       }
     });
   }
+
+  setupBookingForm();
+  document.addEventListener("astro:after-swap", setupBookingForm);
 </script>

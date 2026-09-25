@@ -5,9 +5,10 @@ export async function GET() {
   return new Response(
     JSON.stringify({
       status: "ok",
-      endpoint: "/api/contact",
+      clinic: "Uniyal Oro Dental Clinic & Implant Centre",
+      location: "Balawala, Dehradun",
+      phone: "+91 70180 21512",
       methods: ["POST"],
-      description: "Contact submission API endpoint.",
     }),
     {
       status: 200,
@@ -30,7 +31,7 @@ export async function POST({ request }: { request: Request }) {
         JSON.stringify({
           success: false,
           error: "Validation failed",
-          details: result.error.issues,
+          details: result.error.issues.map((i) => i.message),
         }),
         {
           status: 400,
@@ -43,18 +44,20 @@ export async function POST({ request }: { request: Request }) {
 
     const data = result.data;
 
-    // Log sanitized data only (never log raw user input in production)
-    console.log("Contact form submission:", {
+    // Log sanitized appointment data safely
+    console.log("Clinic Appointment Booking Received:", {
       name: sanitizeForLogging(data.name),
-      email: sanitizeForLogging(data.email, 30),
-      message: sanitizeForLogging(data.message, 100),
+      phone: sanitizeForLogging(data.phone || "N/A"),
+      treatment: sanitizeForLogging(data.treatment || "General"),
+      preferredDate: sanitizeForLogging(data.preferredDate || "Earliest"),
+      preferredTime: sanitizeForLogging(data.preferredTime || "Morning"),
     });
 
-    // Return success response
     return new Response(
       JSON.stringify({
         success: true,
-        message: "Message sent successfully",
+        message: "Thank you! Your appointment request has been received. Our clinic team will call or WhatsApp you shortly at " + (data.phone || "your contact number") + " to confirm your slot.",
+        referenceId: `UNIYAL-${Date.now().toString().slice(-6)}`,
       }),
       {
         status: 200,
@@ -64,11 +67,11 @@ export async function POST({ request }: { request: Request }) {
       },
     );
   } catch (error: unknown) {
-    console.error("Error processing contact form:", error);
+    console.error("Error processing appointment submission:", error);
     return new Response(
       JSON.stringify({
         success: false,
-        error: "Internal server error",
+        error: "Internal server error. Please call +91 70180 21512 directly.",
       }),
       {
         status: 500,

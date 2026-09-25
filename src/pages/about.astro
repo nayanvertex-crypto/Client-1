@@ -1,78 +1,152 @@
 ---
+import clinicOperatory from "../assets/images/dental_clinic_interior_1790351972272.jpg";
+import drHappyPatient from "../assets/images/dr_uniyal_happy_patient_1790352789840.jpg";
+import drProcedure from "../assets/images/dr_uniyal_procedure_1790352853540.jpg";
+import clinicStorefront from "../assets/images/uniyal_clinic_storefront_1790352820357.jpg";
 // src/pages/about.astro
-import Badge from "../components/ui/Badge.astro";
-import Button from "../components/ui/Button.astro";
-import Card from "../components/ui/Card.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="About" description="Learn about Web Client and our engineering philosophy.">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-16 md:py-24 space-y-16">
-    <!-- Header -->
-    <header class="space-y-4">
-      <Badge variant="info">About The Project</Badge>
-      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-balance text-[var(--color-text-main)]">
-        About Web Client
+<Layout
+  title="About Our Clinic & Clinical Standards"
+  description="Learn about Uniyal Oro Dental Clinic & Implant Centre in Balawala, Dehradun. Led by Dr. Ashish Uniyal (Oral & Dental Surgeon). Regd. No-4135."
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-16">
+    <header class="text-center max-w-3xl mx-auto space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-surface-elevated)] border border-[var(--color-border)] text-xs font-semibold text-[var(--color-primary-cyan)]">
+        <span>🏛️ Regd. No-4135 · Near Malsi Puliya, Balawala</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-[var(--color-text-main)]">
+        Gentle Dentistry, Rooted in Balawala
       </h1>
-      <p class="text-lg sm:text-xl text-[var(--color-text-muted)] text-balance leading-relaxed">
-        Web Client is an open, production-ready website starter kit designed for resilient, modern web engineering.
+      <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
+        Founded with the mission to bring international dental standards, precision implantology, and truly pain-free dentistry to the residents of Balawala, Miyawala, and greater Dehradun.
       </p>
     </header>
 
-    <!-- Content Sections -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <Card title="Design Philosophy" description="Guiding principles behind our styling and ergonomics.">
-        <ul class="space-y-3.5 text-sm text-[var(--color-text-main)]">
-          <li class="flex items-start gap-3">
-            <span class="text-[var(--color-accent)] font-bold">✓</span>
-            <span><strong>OKLCH Color Space:</strong> Perceptually uniform lightness with guaranteed WCAG 2.2 AA contrast.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[var(--color-accent)] font-bold">✓</span>
-            <span><strong>Dynamic Viewports:</strong> Utilizes <code class="text-xs px-1.5 py-0.5 rounded bg-[var(--color-surface-elevated)]">100dvh</code> to eliminate mobile URL bar jump issues.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[var(--color-accent)] font-bold">✓</span>
-            <span><strong>Touch Ergonomics:</strong> Accessible interactive targets of at least 48x48px for finger taps.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[var(--color-accent)] font-bold">✓</span>
-            <span><strong>Zero-Trust Architecture:</strong> Strict input validation using Zod schemas and HTML escaping.</span>
-          </li>
-        </ul>
-      </Card>
+    <!-- Clinic Story & Values with Real Storefront Photo -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div class="space-y-4 text-left">
+        <span class="text-xs font-bold uppercase tracking-wider text-[var(--color-primary-cyan)]">
+          Our Foundation
+        </span>
+        <h2 class="text-2xl font-bold text-[var(--color-text-main)]">
+          A Community Hospital Built on Trust
+        </h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+          Too many people avoid the dentist out of fear of pain or uncertainty about costs. At Uniyal Oro Dental Clinic & Implant Centre (famously recognized by our blue <strong>"दांतों का अस्पताल"</strong> signboards near Malsi Puliya), every appointment begins with listening.
+        </p>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+          Led by <strong>Dr. Ashish Uniyal</strong> (Oral & Dental Surgeon from HNB Medical University) and <strong>Dr. Ashish Lakhera</strong> (Dental Surgeon Consultant), our clinical team combines hospital-grade sterilization with genuine compassion.
+        </p>
+      </div>
 
-      <Card title="Core Technology Stack" description="Selected for stability across standard and resource-constrained environments.">
-        <div class="space-y-4 text-sm text-[var(--color-text-main)]">
-          <div>
-            <h4 class="font-semibold text-[var(--color-text-main)]">Astro 5+ (Static Generation)</h4>
-            <p class="text-[var(--color-text-muted)] text-xs mt-0.5">Pre-renders fast, secure static files with zero runtime client overhead.</p>
-          </div>
-          <div>
-            <h4 class="font-semibold text-[var(--color-text-main)]">Tailwind CSS v4</h4>
-            <p class="text-[var(--color-text-muted)] text-xs mt-0.5">Vite plugin architecture, native CSS variables, and zero configuration lag.</p>
-          </div>
-          <div>
-            <h4 class="font-semibold text-[var(--color-text-main)]">Biome Linter & Formatter</h4>
-            <p class="text-[var(--color-text-muted)] text-xs mt-0.5">Strict formatting, 2-space indentation, no explicit any, and instant verification.</p>
-          </div>
-          <div>
-            <h4 class="font-semibold text-[var(--color-text-main)]">Termux / ARM64 Friendly</h4>
-            <p class="text-[var(--color-text-muted)] text-xs mt-0.5">Zero binary native dependencies to ensure 100% buildability on Android Termux.</p>
-          </div>
-        </div>
-      </Card>
+      <div class="rounded-2xl overflow-hidden border border-[var(--color-border)] shadow-md">
+        <img
+          src={clinicStorefront.src}
+          alt="Uniyal Oro Dental Clinic storefront in Balawala Dehradun"
+          class="w-full h-72 object-cover object-center"
+          loading="lazy"
+        />
+      </div>
     </div>
 
-    <!-- Call to action -->
-    <div class="p-8 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div>
-        <h3 class="text-lg font-bold text-[var(--color-text-main)]">Have questions or suggestions?</h3>
-        <p class="text-sm text-[var(--color-text-muted)] mt-1">We would love to hear your feedback on the kit.</p>
+    <!-- Authentic Visual Showcase: Procedures & Pediatric Care -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] overflow-hidden shadow-xs">
+        <div class="h-60 overflow-hidden">
+          <img
+            src={drHappyPatient.src}
+            alt="Dr. Ashish Uniyal with a cheerful child patient giving a thumbs-up in Balawala clinic"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="p-5 space-y-2">
+          <h3 class="text-base font-bold text-[var(--color-text-main)]">Child & Family-Friendly Care</h3>
+          <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+            We use child-friendly language, soothing numbing gels, and playful communication so children leave smiling and proud.
+          </p>
+        </div>
       </div>
-      <Button href="/contact" variant="primary">
-        Get in Touch
-      </Button>
+
+      <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] overflow-hidden shadow-xs">
+        <div class="h-60 overflow-hidden">
+          <img
+            src={drProcedure.src}
+            alt="Dr. Ashish Uniyal performing focused surgical procedure"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="p-5 space-y-2">
+          <h3 class="text-base font-bold text-[var(--color-text-main)]">Micro-Precision Surgical Operatory</h3>
+          <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+            High-torque rotary endodontics, titanium dental implant kits, and low-dose digital RVG imaging.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pillars of Practice -->
+    <div class="space-y-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-text-main)]">
+          The 4 Pillars of Our Clinical Practice
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] space-y-2">
+          <span class="text-xs font-bold text-[var(--color-primary-cyan)]">01. Pain-Free Anesthesia</span>
+          <h3 class="text-lg font-bold text-[var(--color-text-main)]">Zero-Pain Commitment</h3>
+          <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+            We use topical numbing gels before any injection, ultra-fine micro needles, and precision infiltration techniques to eliminate procedural discomfort completely.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] space-y-2">
+          <span class="text-xs font-bold text-emerald-600">02. Sterilization</span>
+          <h3 class="text-lg font-bold text-[var(--color-text-main)]">Class-B Hospital Autoclave</h3>
+          <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Every surgical instrument is cleaned with ultrasonic scrubbers and sealed in sterilized indicator pouches, opened only in front of the patient.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] space-y-2">
+          <span class="text-xs font-bold text-[var(--color-primary-cyan)]">03. Digital Precision</span>
+          <h3 class="text-lg font-bold text-[var(--color-text-main)]">Low-Radiation Digital Imaging</h3>
+          <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+            High-resolution RVG sensors provide instant diagnostics with 90% less radiation than conventional dental films.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] space-y-2">
+          <span class="text-xs font-bold text-emerald-600">04. Transparent Pricing</span>
+          <h3 class="text-lg font-bold text-[var(--color-text-main)]">Honest Consultations</h3>
+          <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+            No hidden clinic fees, no surprise add-ons. We provide complete upfront estimates and prioritize natural tooth preservation.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Doctor Spotlight Callout -->
+    <div class="rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6 sm:p-10 flex flex-col md:flex-row items-center gap-6">
+      <img
+        src={drHappyPatient.src}
+        alt="Dr. Ashish Uniyal Dental Surgeon"
+        class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover border-2 border-[var(--color-primary-cyan)] shrink-0"
+      />
+      <div class="space-y-2 text-center md:text-left flex-1">
+        <h3 class="text-xl font-bold text-[var(--color-text-main)]">Dr. Ashish Uniyal & Dr. Ashish Lakhera</h3>
+        <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+          Serving Balawala, Miyawala, Harrawala, and Nakronda with genuine clinical dedication. Available Monday through Saturday 9:30 AM to 1:00 PM and 4:00 PM to 9:00 PM.
+        </p>
+        <div class="pt-1">
+          <a href="/contact" class="text-xs font-bold text-[var(--color-primary-cyan)] hover:underline inline-flex items-center gap-1">
+            Book an appointment at our Balawala clinic <span>→</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </Layout>
