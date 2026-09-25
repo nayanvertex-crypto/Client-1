@@ -1,0 +1,52 @@
+---
+// src/components/ui/Button.astro
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"button"> {
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "danger";
+  size?: "sm" | "md" | "lg";
+  href?: string;
+}
+
+const {
+  variant = "primary",
+  size = "md",
+  type = "button",
+  href,
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const baseStyles =
+  "inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 ease-out hover:scale-102 active:scale-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 select-none cursor-pointer";
+
+const sizeStyles = {
+  sm: "min-h-[36px] px-3.5 text-sm gap-1.5",
+  md: "min-h-[48px] px-5 text-base gap-2",
+  lg: "min-h-[56px] px-7 text-lg gap-2.5",
+};
+
+const variantStyles = {
+  primary:
+    "bg-[var(--color-accent)] text-white hover:brightness-110 active:brightness-95 focus-visible:ring-[var(--color-accent)]/40 shadow-xs hover:shadow-[0_0_15px_oklch(0.55_0.22_260/0.35)] dark:hover:shadow-[0_0_20px_oklch(0.65_0.20_260/0.4)]",
+  secondary:
+    "bg-[var(--color-surface-elevated)] text-[var(--color-text-main)] border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] hover:brightness-105 focus-visible:ring-[var(--color-accent)]/40",
+  outline:
+    "border border-[var(--color-border)] bg-transparent text-[var(--color-text-main)] hover:bg-[var(--color-surface-elevated)] hover:border-[var(--color-border-hover)] hover:text-[var(--color-accent)] focus-visible:ring-[var(--color-accent)]/40",
+  ghost:
+    "bg-transparent text-[var(--color-text-main)] hover:bg-[var(--color-surface-elevated)] hover:text-[var(--color-accent)] focus-visible:ring-[var(--color-accent)]/40",
+  danger:
+    "bg-[var(--color-danger)] text-white hover:brightness-110 active:brightness-95 focus-visible:ring-[var(--color-danger)]/40 shadow-xs hover:shadow-[0_0_15px_oklch(0.58_0.24_27/0.35)]",
+};
+
+const Element = href ? "a" : "button";
+---
+
+<Element
+  href={href}
+  type={!href ? type : undefined}
+  class:list={[baseStyles, sizeStyles[size], variantStyles[variant], className]}
+  {...rest}
+>
+  <slot />
+</Element>

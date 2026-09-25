@@ -1,0 +1,78 @@
+---
+// src/pages/about.astro
+import Badge from "../components/ui/Badge.astro";
+import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="About" description="Learn about Web Client and our engineering philosophy.">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-16 md:py-24 space-y-16">
+    <!-- Header -->
+    <header class="space-y-4">
+      <Badge variant="info">About The Project</Badge>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-balance text-[var(--color-text-main)]">
+        About Web Client
+      </h1>
+      <p class="text-lg sm:text-xl text-[var(--color-text-muted)] text-balance leading-relaxed">
+        Web Client is an open, production-ready website starter kit designed for resilient, modern web engineering.
+      </p>
+    </header>
+
+    <!-- Content Sections -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <Card title="Design Philosophy" description="Guiding principles behind our styling and ergonomics.">
+        <ul class="space-y-3.5 text-sm text-[var(--color-text-main)]">
+          <li class="flex items-start gap-3">
+            <span class="text-[var(--color-accent)] font-bold">✓</span>
+            <span><strong>OKLCH Color Space:</strong> Perceptually uniform lightness with guaranteed WCAG 2.2 AA contrast.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[var(--color-accent)] font-bold">✓</span>
+            <span><strong>Dynamic Viewports:</strong> Utilizes <code class="text-xs px-1.5 py-0.5 rounded bg-[var(--color-surface-elevated)]">100dvh</code> to eliminate mobile URL bar jump issues.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[var(--color-accent)] font-bold">✓</span>
+            <span><strong>Touch Ergonomics:</strong> Accessible interactive targets of at least 48x48px for finger taps.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[var(--color-accent)] font-bold">✓</span>
+            <span><strong>Zero-Trust Architecture:</strong> Strict input validation using Zod schemas and HTML escaping.</span>
+          </li>
+        </ul>
+      </Card>
+
+      <Card title="Core Technology Stack" description="Selected for stability across standard and resource-constrained environments.">
+        <div class="space-y-4 text-sm text-[var(--color-text-main)]">
+          <div>
+            <h4 class="font-semibold text-[var(--color-text-main)]">Astro 5+ (Static Generation)</h4>
+            <p class="text-[var(--color-text-muted)] text-xs mt-0.5">Pre-renders fast, secure static files with zero runtime client overhead.</p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[var(--color-text-main)]">Tailwind CSS v4</h4>
+            <p class="text-[var(--color-text-muted)] text-xs mt-0.5">Vite plugin architecture, native CSS variables, and zero configuration lag.</p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[var(--color-text-main)]">Biome Linter & Formatter</h4>
+            <p class="text-[var(--color-text-muted)] text-xs mt-0.5">Strict formatting, 2-space indentation, no explicit any, and instant verification.</p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[var(--color-text-main)]">Termux / ARM64 Friendly</h4>
+            <p class="text-[var(--color-text-muted)] text-xs mt-0.5">Zero binary native dependencies to ensure 100% buildability on Android Termux.</p>
+          </div>
+        </div>
+      </Card>
+    </div>
+
+    <!-- Call to action -->
+    <div class="p-8 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="text-lg font-bold text-[var(--color-text-main)]">Have questions or suggestions?</h3>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1">We would love to hear your feedback on the kit.</p>
+      </div>
+      <Button href="/contact" variant="primary">
+        Get in Touch
+      </Button>
+    </div>
+  </div>
+</Layout>

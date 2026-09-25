@@ -1,0 +1,63 @@
+---
+// src/components/ui/Input.astro
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"input"> {
+  label: string;
+  name: string;
+  error?: string;
+  helperText?: string;
+}
+
+const {
+  label,
+  name,
+  type = "text",
+  placeholder = "",
+  required = false,
+  error,
+  helperText,
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const inputId = `field-${name}`;
+const errorId = `${inputId}-error`;
+const helperId = `${inputId}-helper`;
+---
+
+<div class:list={["w-full space-y-1.5 text-left", className]}>
+  <label for={inputId} class="block text-sm font-semibold text-[var(--color-text-main)]">
+    {label}
+    {required && <span class="text-[var(--color-danger)] ml-0.5" aria-hidden="true">*</span>}
+  </label>
+
+  <input
+    id={inputId}
+    name={name}
+    type={type}
+    placeholder={placeholder}
+    required={required}
+    aria-invalid={error ? "true" : undefined}
+    aria-describedby={error ? errorId : helperText ? helperId : undefined}
+    class:list={[
+      "w-full min-h-[48px] px-4 rounded-lg border text-base text-[var(--color-text-main)] bg-[var(--color-surface-elevated)] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1",
+      error
+        ? "border-[var(--color-danger)] focus:ring-[var(--color-danger)]"
+        : "border-[var(--color-border)] focus:ring-[var(--color-accent)] focus:border-transparent",
+    ]}
+    {...rest}
+  />
+
+  {error && (
+    <p id={errorId} class="text-xs text-[var(--color-danger)] font-medium">
+      {error}
+    </p>
+  )}
+
+  {!error && helperText && (
+    <p id={helperId} class="text-xs text-[var(--color-text-muted)]">
+      {helperText}
+    </p>
+  )}
+</div>

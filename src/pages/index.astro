@@ -1,0 +1,105 @@
+---
+// src/pages/index.astro
+import Badge from "../components/ui/Badge.astro";
+import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Home" description="A production-ready website starter kit built with Astro 5+, Tailwind CSS v4, and TypeScript.">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-16 md:py-24 space-y-20">
+    <!-- Hero Section -->
+    <section class="text-center space-y-6 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2">
+        <Badge variant="info">Astro 5+</Badge>
+        <Badge variant="success">Tailwind CSS v4</Badge>
+        <Badge variant="neutral">Termux Ready</Badge>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-balance text-[var(--color-text-main)]">
+        Modern Web Architecture with <span class="text-[var(--color-accent)]">Web Client</span>
+      </h1>
+
+      <p class="text-lg sm:text-xl text-[var(--color-text-muted)] text-balance leading-relaxed">
+        A production-grade, accessible website starter kit designed for performance, strict TypeScript safety, OKLCH color design tokens, and Termux compatibility.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center pt-2">
+        <Button href="/components" variant="primary" size="lg">
+          Explore Components
+        </Button>
+        <Button href="/about" variant="outline" size="lg">
+          Learn More
+        </Button>
+      </div>
+    </section>
+
+    <!-- Key Features Grid -->
+    <section class="space-y-8" aria-labelledby="features-heading">
+      <div class="text-center space-y-2">
+        <h2 id="features-heading" class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--color-text-main)]">
+          Engineered for Modern Reliability
+        </h2>
+        <p class="text-sm sm:text-base text-[var(--color-text-muted)]">
+          Built upon static-first principles with zero native runtime crashes.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Card
+          title="Static-First Architecture"
+          description="Astro static generation generates pre-rendered, lightweight HTML out of the box."
+        >
+          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Fast initial page loads, optimal core web vitals, and instant SEO crawlability with zero hydration penalties.
+          </p>
+          <div slot="footer">
+            <Badge variant="success" size="sm">Pre-rendered</Badge>
+          </div>
+        </Card>
+
+        <Card
+          title="Tailwind CSS v4 Engine"
+          description="Powered by the modern @tailwindcss/vite compiler with native OKLCH color spaces."
+        >
+          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Perceptually uniform colors with WCAG 2.2 AA contrast ratios, dynamic viewport heights, and zero PostCSS config bottlenecks.
+          </p>
+          <div slot="footer">
+            <Badge variant="info" size="sm">Vite Native</Badge>
+          </div>
+        </Card>
+
+        <Card
+          title="Termux & ARM64 Safe"
+          description="Pure JavaScript and WebAssembly tooling that builds anywhere without native crashes."
+        >
+          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Strict Biome linter, Node/TypeScript toolchains, and low-resource compatibility ensuring smooth operation on mobile and ARM.
+          </p>
+          <div slot="footer">
+            <Badge variant="neutral" size="sm">Cross-Platform</Badge>
+          </div>
+        </Card>
+      </div>
+    </section>
+
+    <!-- Quick CTA Section -->
+    <section class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 md:p-12 text-center space-y-6">
+      <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-text-main)]">
+        Ready to build your next project?
+      </h2>
+      <p class="text-base text-[var(--color-text-muted)] max-w-xl mx-auto leading-relaxed">
+        Browse our comprehensive component showcase or connect with the team to start collaborating.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <Button href="/contact" variant="primary">
+          Contact Us
+        </Button>
+        <Button href="/components" variant="secondary">
+          Component Gallery
+        </Button>
+      </div>
+    </section>
+  </div>
+</Layout>

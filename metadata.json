@@ -1,0 +1,6 @@
+{
+  "name": "Web Client",
+  "description": "Production-ready website starter kit built with Astro 5+, Tailwind CSS v4, TypeScript, and Biome.",
+  "capabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"],
+  "permissions": []
+}

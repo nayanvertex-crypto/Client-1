@@ -1,0 +1,163 @@
+---
+// src/pages/contact.astro
+import Badge from "../components/ui/Badge.astro";
+import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
+import Input from "../components/ui/Input.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contact" description="Get in touch with the Web Client team.">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-16 md:py-24 space-y-12">
+    <header class="space-y-4">
+      <Badge variant="info">Connect With Us</Badge>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-balance text-[var(--color-text-main)]">
+        Get in Touch
+      </h1>
+      <p class="text-lg text-[var(--color-text-muted)] text-balance leading-relaxed">
+        Have a question, feedback, or want to collaborate? Send us a message and we will respond promptly.
+      </p>
+    </header>
+
+    <Card>
+      <form id="contactForm" method="POST" action="/api/contact" class="space-y-6">
+        <Input
+          label="Your Name"
+          name="name"
+          placeholder="Alex Johnson"
+          required
+          minlength={2}
+          maxlength={100}
+        />
+
+        <Input
+          label="Email Address"
+          name="email"
+          type="email"
+          placeholder="alex@domain.com"
+          required
+          helperText="We will never share or sell your email address."
+        />
+
+        <div class="w-full space-y-1.5 text-left">
+          <label for="field-message" class="block text-sm font-semibold text-[var(--color-text-main)]">
+            Message <span class="text-[var(--color-danger)] ml-0.5" aria-hidden="true">*</span>
+          </label>
+          <textarea
+            id="field-message"
+            name="message"
+            required
+            minlength={10}
+            maxlength={1000}
+            rows={5}
+            placeholder="Tell us about your project or inquiry..."
+            class="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] text-base text-[var(--color-text-main)] bg-[var(--color-surface-elevated)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent resize-y min-h-[120px]"
+          ></textarea>
+        </div>
+
+        <div class="pt-2">
+          <Button type="submit" variant="primary" class="w-full sm:w-auto">
+            Send Message
+          </Button>
+        </div>
+      </form>
+
+      <div
+        id="formFeedback"
+        class="mt-6 p-4 rounded-lg hidden text-sm font-medium leading-relaxed"
+        role="alert"
+        aria-live="polite"
+      ></div>
+    </Card>
+  </div>
+</Layout>
+
+<script>
+  import { contactFormSchema } from "../lib/schemas";
+
+  const form = document.getElementById("contactForm") as HTMLFormElement | null;
+  const feedback = document.getElementById("formFeedback") as HTMLDivElement | null;
+
+  // Safe escape function for client-side text rendering
+  const escapeHTML = (str: string): string => {
+    const htmlEscapes: Record<string, string> = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    };
+    return str.replace(/[&<>"']/g, (char) => htmlEscapes[char] || char);
+  };
+
+  if (form && feedback) {
+    let abortController: AbortController | null = null;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      feedback.classList.add("hidden");
+      feedback.textContent = "";
+
+      // Cancel previous pending request to avoid race condition
+      if (abortController) {
+        abortController.abort();
+      }
+      abortController = new AbortController();
+
+      const formData = new FormData(form);
+      const data = {
+        name: String(formData.get("name") || ""),
+        email: String(formData.get("email") || ""),
+        message: String(formData.get("message") || ""),
+      };
+
+      // Validate with safe Zod schema
+      const result = contactFormSchema.safeParse(data);
+
+      if (!result.success) {
+        const errors = result.error.issues.map((err) => `${err.message}`).join(", ");
+        feedback.textContent = `Validation failed: ${escapeHTML(errors)}`;
+        feedback.className =
+          "mt-6 p-4 rounded-lg bg-[oklch(0.58_0.24_27/0.12)] border border-[oklch(0.58_0.24_27/0.3)] text-[oklch(0.48_0.24_27)] dark:text-[oklch(0.75_0.20_27)]";
+        feedback.classList.remove("hidden");
+        return;
+      }
+
+      // Send to API with AbortController
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+          signal: abortController.signal,
+        });
+
+        const resData = await response.json();
+
+        if (response.ok && resData.success) {
+          feedback.textContent = "Thank you! Your message has been sent successfully.";
+          feedback.className =
+            "mt-6 p-4 rounded-lg bg-[oklch(0.62_0.17_145/0.12)] border border-[oklch(0.62_0.17_145/0.3)] text-[oklch(0.45_0.18_145)] dark:text-[oklch(0.75_0.16_145)]";
+          feedback.classList.remove("hidden");
+          form.reset();
+        } else {
+          const errorMsg = typeof resData.error === "string" ? resData.error : "Submission failed.";
+          feedback.textContent = escapeHTML(errorMsg);
+          feedback.className =
+            "mt-6 p-4 rounded-lg bg-[oklch(0.58_0.24_27/0.12)] border border-[oklch(0.58_0.24_27/0.3)] text-[oklch(0.48_0.24_27)] dark:text-[oklch(0.75_0.20_27)]";
+          feedback.classList.remove("hidden");
+        }
+      } catch (err: unknown) {
+        if (err instanceof Error && err.name === "AbortError") {
+          return;
+        }
+        feedback.textContent = "Network error. Please check your connection and try again.";
+        feedback.className =
+          "mt-6 p-4 rounded-lg bg-[oklch(0.58_0.24_27/0.12)] border border-[oklch(0.58_0.24_27/0.3)] text-[oklch(0.48_0.24_27)] dark:text-[oklch(0.75_0.20_27)]";
+        feedback.classList.remove("hidden");
+      }
+    });
+  }
+</script>

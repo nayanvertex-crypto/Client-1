@@ -1,0 +1,26 @@
+{
+  "name": "web-client",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0 --port 3000",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 3000",
+    "start": "node ./dist/server/entry.mjs",
+    "lint": "biome check ./src",
+    "format": "biome format ./src",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.1.6",
+    "astro": "^7.3.5",
+    "tailwindcss": "^4.0.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}

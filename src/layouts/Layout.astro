@@ -1,0 +1,94 @@
+---
+// src/layouts/Layout.astro
+import { ClientRouter } from "astro:transitions";
+import Footer from "../components/ui/Footer.astro";
+import Header from "../components/ui/Header.astro";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Web Client",
+  description = "Production-ready website starter kit built with Astro 5+, Tailwind CSS v4, and TypeScript.",
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="oklch(0.550 0.220 260)" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Development Team" />
+    <title>{title} | Web Client</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Astro View Transitions Engine -->
+    <ClientRouter />
+
+    <!-- Theme Initialization Script (Prevents FOUC & preserves theme on navigation) -->
+    <script is:inline>
+      function applyTheme() {
+        try {
+          const stored = localStorage.getItem("theme");
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (stored === "dark" || (!stored && prefersDark)) {
+            document.documentElement.classList.add("dark");
+            document.documentElement.classList.remove("light");
+          } else {
+            document.documentElement.classList.remove("dark");
+            document.documentElement.classList.add("light");
+          }
+        } catch (_) {}
+      }
+      applyTheme();
+      document.addEventListener("astro:after-swap", applyTheme);
+    </script>
+  </head>
+  <body class="bg-[var(--color-canvas)] text-[var(--color-text-main)] min-h-[100dvh] flex flex-col transition-colors duration-200 selection:bg-[var(--color-accent)] selection:text-white">
+    <!-- Subtle navigation progress indicator -->
+    <div
+      id="nav-progress-bar"
+      class="fixed top-0 left-0 right-0 h-[2.5px] bg-[var(--color-accent)] z-50 transform origin-left scale-x-0 opacity-0 pointer-events-none transition-transform duration-300 ease-out shadow-[0_0_8px_var(--color-accent)]"
+      aria-hidden="true"
+    ></div>
+
+    <Header />
+
+    <main class="flex-1 w-full animate-fade-slide-in">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <script>
+      function setupProgressIndicator() {
+        const bar = document.getElementById("nav-progress-bar");
+        if (!bar) return;
+
+        document.addEventListener("astro:before-preparation", () => {
+          bar.style.transition = "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease-in";
+          bar.style.opacity = "1";
+          bar.style.transform = "scaleX(0.75)";
+        });
+
+        document.addEventListener("astro:after-swap", () => {
+          bar.style.transition = "transform 0.15s ease-out, opacity 0.2s ease-out 0.1s";
+          bar.style.transform = "scaleX(1)";
+          bar.style.opacity = "0";
+          setTimeout(() => {
+            bar.style.transition = "none";
+            bar.style.transform = "scaleX(0)";
+          }, 300);
+        });
+      }
+
+      setupProgressIndicator();
+    </script>
+  </body>
+</html>

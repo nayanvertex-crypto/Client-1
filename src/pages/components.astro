@@ -1,0 +1,225 @@
+---
+// src/pages/components.astro
+import Badge from "../components/ui/Badge.astro";
+import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
+import Input from "../components/ui/Input.astro";
+import Modal from "../components/ui/Modal.astro";
+import ThemeToggle from "../components/ui/ThemeToggle.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="UI Components" description="Interactive showcase of accessible Astro and Tailwind v4 UI building blocks.">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-16 space-y-16">
+    <!-- Header -->
+    <header class="space-y-3 border-b border-[var(--color-border)] pb-8">
+      <div class="flex flex-wrap items-center gap-2">
+        <Badge variant="info">Component Gallery</Badge>
+        <Badge variant="success">Tailwind CSS v4</Badge>
+        <Badge variant="neutral">Biome Strict</Badge>
+      </div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--color-text-main)]">
+        Foundation UI Components
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--color-text-muted)] max-w-2xl leading-relaxed">
+        Accessible, zero-dependency Astro building blocks styled with semantic OKLCH design tokens and meeting WCAG 2.2 AA standards.
+      </p>
+    </header>
+
+    <!-- Theme Switcher Section -->
+    <section class="space-y-4" aria-labelledby="theme-section-title">
+      <h2 id="theme-section-title" class="text-xl sm:text-2xl font-bold tracking-tight text-[var(--color-text-main)]">
+        Theme Switcher
+      </h2>
+      <Card title="Interactive Dark/Light Toggle" description="Supports persistent localStorage and system prefers-color-scheme detection.">
+        <div class="flex items-center gap-4 py-2">
+          <ThemeToggle />
+          <p class="text-sm text-[var(--color-text-muted)]">
+            Click the icon above to toggle between OKLCH dark and light modes smoothly.
+          </p>
+        </div>
+      </Card>
+    </section>
+
+    <!-- Buttons Section -->
+    <section class="space-y-6" aria-labelledby="buttons-section-title">
+      <div class="border-b border-[var(--color-border)] pb-2 flex items-center justify-between">
+        <h2 id="buttons-section-title" class="text-xl sm:text-2xl font-bold tracking-tight text-[var(--color-text-main)]">
+          Buttons
+        </h2>
+        <span class="text-xs text-[var(--color-text-muted)]">Touch target ≥ 48px</span>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+          Variants
+        </h3>
+        <div class="flex flex-wrap gap-4 items-center">
+          <Button variant="primary">Primary Action</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="danger">Danger</Button>
+          <Button variant="primary" disabled>Disabled</Button>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+          Sizes
+        </h3>
+        <div class="flex flex-wrap gap-4 items-center">
+          <Button variant="primary" size="sm">Small (36px)</Button>
+          <Button variant="primary" size="md">Medium (48px)</Button>
+          <Button variant="primary" size="lg">Large (56px)</Button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Badges Section -->
+    <section class="space-y-6" aria-labelledby="badges-section-title">
+      <div class="border-b border-[var(--color-border)] pb-2 flex items-center justify-between">
+        <h2 id="badges-section-title" class="text-xl sm:text-2xl font-bold tracking-tight text-[var(--color-text-main)]">
+          Badges & Status Pills
+        </h2>
+        <span class="text-xs text-[var(--color-text-muted)]">OKLCH borders & tints</span>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+          Status Variants
+        </h3>
+        <div class="flex flex-wrap gap-3 items-center">
+          <Badge variant="default">Default</Badge>
+          <Badge variant="neutral">Neutral</Badge>
+          <Badge variant="success">Success / Verified</Badge>
+          <Badge variant="warning">Warning / Pending</Badge>
+          <Badge variant="danger">Danger / Critical</Badge>
+          <Badge variant="info">Info / Notice</Badge>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+          Sizes & Interactivity
+        </h3>
+        <div class="flex flex-wrap gap-3 items-center">
+          <Badge variant="success" size="sm">Small Pill</Badge>
+          <Badge variant="success" size="md">Medium Pill</Badge>
+          <Badge variant="info" size="md" interactive>Interactive Chip</Badge>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="space-y-6" aria-labelledby="cards-section-title">
+      <div class="border-b border-[var(--color-border)] pb-2">
+        <h2 id="cards-section-title" class="text-xl sm:text-2xl font-bold tracking-tight text-[var(--color-text-main)]">
+          Cards
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card
+          title="Interactive Dialog Demo"
+          description="Demonstrates native HTML5 modal integration with zero runtime bloat."
+        >
+          <p class="text-sm leading-relaxed mb-4">
+            Click the button below to trigger the accessible modal dialog element.
+          </p>
+          <div slot="footer" class="flex items-center gap-3">
+            <Button variant="primary" size="sm" data-open-modal="demo-modal">
+              Open Modal Dialog
+            </Button>
+          </div>
+        </Card>
+
+        <Card
+          title="OKLCH Design Token System"
+          description="Perceptually uniform color palette tailored for contrast."
+        >
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center justify-between py-1 border-b border-[var(--color-border)]">
+              <span class="text-[var(--color-text-muted)]">Canvas Background</span>
+              <code class="text-xs bg-[var(--color-surface-elevated)] px-2 py-0.5 rounded">oklch(0.985 0.002 247)</code>
+            </div>
+            <div class="flex items-center justify-between py-1 border-b border-[var(--color-border)]">
+              <span class="text-[var(--color-text-muted)]">Accent Brand</span>
+              <code class="text-xs bg-[var(--color-surface-elevated)] px-2 py-0.5 rounded">oklch(0.550 0.220 260)</code>
+            </div>
+            <div class="flex items-center justify-between py-1">
+              <span class="text-[var(--color-text-muted)]">Contrast Ratio</span>
+              <Badge variant="success" size="sm">WCAG 2.2 AA</Badge>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </section>
+
+    <!-- Form Inputs Section -->
+    <section class="space-y-6" aria-labelledby="inputs-section-title">
+      <div class="border-b border-[var(--color-border)] pb-2">
+        <h2 id="inputs-section-title" class="text-xl sm:text-2xl font-bold tracking-tight text-[var(--color-text-main)]">
+          Form Controls
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl">
+        <Input
+          label="Full Name"
+          name="full_name"
+          placeholder="Jane Doe"
+          required
+          helperText="Enter your legal or professional name."
+        />
+        <Input
+          label="Email Address"
+          name="email_address"
+          type="email"
+          placeholder="jane@company.org"
+          required
+        />
+        <Input
+          label="Password Field"
+          name="account_password"
+          type="password"
+          placeholder="••••••••"
+          error="Password must contain at least 8 characters"
+        />
+        <Input
+          label="Organization (Optional)"
+          name="org_name"
+          placeholder="Acme Corp"
+          helperText="We will never share your organization details."
+        />
+      </div>
+    </section>
+  </div>
+
+  <!-- HTML5 Modal Dialog Instance -->
+  <Modal
+    id="demo-modal"
+    title="Confirmation Required"
+    description="This is an accessible HTML5 <dialog> component with focus management and backdrop dismiss."
+  >
+    <div class="space-y-3">
+      <p class="text-sm text-[var(--color-text-main)] leading-relaxed">
+        The modal trap automatically handles keyboard focus, closes on the Escape key, and renders a frosted backdrop with OKLCH surface styles.
+      </p>
+      <div class="p-3 rounded-lg bg-[var(--color-surface-elevated)] border border-[var(--color-border)]">
+        <p class="text-xs font-mono text-[var(--color-text-muted)]">
+          aria-labelledby="demo-modal-title" | aria-describedby="demo-modal-desc"
+        </p>
+      </div>
+    </div>
+
+    <div slot="footer">
+      <Button variant="outline" size="sm" data-close-modal="demo-modal">
+        Cancel
+      </Button>
+      <Button variant="primary" size="sm" data-close-modal="demo-modal">
+        Confirm Action
+      </Button>
+    </div>
+  </Modal>
+</Layout>

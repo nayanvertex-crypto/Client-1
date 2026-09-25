@@ -1,0 +1,36 @@
+{
+  "name": "Web Client",
+  "description": "Production Website Starter Kit",
+  "version": "0.0.1",
+  "author": {
+    "name": "Development Team"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/web-client.git"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "biome check ./src",
+    "format": "biome format ./src",
+    "typecheck": "tsc --noEmit"
+  },
+  "theme": {
+    "palette": {
+      "canvas": {
+        "light": "oklch(0.985 0.002 240)",
+        "dark": "oklch(0.120 0.010 240)"
+      },
+      "surface": {
+        "light": "oklch(0.950 0.005 240)",
+        "dark": "oklch(0.200 0.015 240)"
+      },
+      "accent": {
+        "light": "oklch(0.550 0.220 260)",
+        "dark": "oklch(0.550 0.220 260)"
+      }
+    }
+  }
+}
