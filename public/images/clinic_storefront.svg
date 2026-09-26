@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <linearGradient id="signboard" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0F2537"/>
+      <stop offset="100%" stop-color="#1E3A5F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="500" fill="url(#sky)"/>
+
+  <!-- Building Architecture -->
+  <rect x="100" y="80" width="600" height="380" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+  <rect x="90" y="70" width="620" height="20" fill="#0F2537"/>
+
+  <!-- Main Prominent Blue Signboard -->
+  <rect x="120" y="105" width="560" height="95" rx="8" fill="url(#signboard)" stroke="#0D9488" stroke-width="2"/>
+
+  <!-- Tooth Emblem on Signboard -->
+  <g transform="translate(140, 122)">
+    <rect x="0" y="0" width="60" height="60" rx="12" fill="#E6FFFA" stroke="#0D9488" stroke-width="1.5"/>
+    <path d="M30 12 C23 12 18 17 18 23 C18 27 20 31 21 36 C23 41 24 46 26 48 C28 47 29 45 30 40 C31 45 32 47 34 48 C36 46 37 41 39 36 C40 31 42 27 42 23 C42 17 37 12 30 12 Z" fill="#0D9488"/>
+  </g>
+
+  <!-- Signboard Typography -->
+  <text x="215" y="142" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="900" letter-spacing="0.5">UNIYAL ORO DENTAL CLINIC &amp; IMPLANT CENTRE</text>
+  <text x="215" y="165" fill="#38BDF8" font-family="'Noto Sans Devanagari', system-ui, sans-serif" font-size="16" font-weight="bold">उणियाल ओरो डेंटल क्लिनिक (दांतों का अस्पताल)</text>
+  <text x="215" y="185" fill="#E2E8F0" font-family="system-ui, sans-serif" font-size="11" font-weight="500">Malsi Puliya, Balawala Main Road, Dehradun · 📞 +91 70180 21512</text>
+
+  <!-- Ground Floor Clinic Entrance -->
+  <g transform="translate(180, 220)">
+    <!-- Glass Double Entrance Doors -->
+    <rect x="120" y="0" width="200" height="220" fill="#F1F5F9" stroke="#94A3B8" stroke-width="3"/>
+    <line x1="220" y1="0" x2="220" y2="220" stroke="#94A3B8" stroke-width="3"/>
+    <rect x="135" y="15" width="70" height="185" fill="#E2E8F0" stroke="#CBD5E1" stroke-width="1"/>
+    <rect x="235" y="15" width="70" height="185" fill="#E2E8F0" stroke="#CBD5E1" stroke-width="1"/>
+    <!-- Door Handles -->
+    <rect x="205" y="95" width="6" height="35" rx="3" fill="#0D9488"/>
+    <rect x="229" y="95" width="6" height="35" rx="3" fill="#0D9488"/>
+
+    <!-- Left & Right Display Windows -->
+    <rect x="-40" y="30" width="130" height="150" fill="#E6FFFA" stroke="#94A3B8" stroke-width="2"/>
+    <rect x="350" y="30" width="130" height="150" fill="#E6FFFA" stroke="#94A3B8" stroke-width="2"/>
+
+    <!-- Posters in Windows -->
+    <text x="-25" y="80" fill="#0F2537" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">DENTAL IMPLANTS</text>
+    <text x="-25" y="100" fill="#0D9488" font-family="system-ui, sans-serif" font-size="9">Single-Sitting RCT</text>
+    <text x="-25" y="120" fill="#475569" font-family="system-ui, sans-serif" font-size="9">Clear Aligners</text>
+
+    <text x="365" y="80" fill="#0F2537" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">OPEN DAILY</text>
+    <text x="365" y="100" fill="#0D9488" font-family="system-ui, sans-serif" font-size="9">8:00 AM – 9:00 PM</text>
+    <text x="365" y="120" fill="#D97706" font-family="system-ui, sans-serif" font-size="9">⭐ 4.8 / 5.0 Google</text>
+  </g>
+
+  <!-- Ground Ramp & Wheelchair Accessible Pathway -->
+  <polygon points="120,440 680,440 730,500 70,500" fill="#CBD5E1"/>
+  <rect x="260" y="440" width="120" height="55" fill="#0D9488" opacity="0.15"/>
+  <text x="270" y="475" fill="#0D9488" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">♿ WHEELCHAIR RAMP</text>
+</svg>

@@ -56,7 +56,7 @@ export async function POST({ request }: { request: Request }) {
     return new Response(
       JSON.stringify({
         success: true,
-        message: "Thank you! Your appointment request has been received. Our clinic team will call or WhatsApp you shortly at " + (data.phone || "your contact number") + " to confirm your slot.",
+        message: `Thank you! Your appointment request has been received. Our clinic team will call or WhatsApp you shortly at ${data.phone || "your contact number"} to confirm your slot.`,
         referenceId: `UNIYAL-${Date.now().toString().slice(-6)}`,
       }),
       {

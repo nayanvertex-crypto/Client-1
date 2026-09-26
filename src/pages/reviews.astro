@@ -1,0 +1,122 @@
+---
+// src/pages/reviews.astro
+import GoogleMapSection from "../components/ui/GoogleMapSection.astro";
+import Testimonials from "../components/ui/Testimonials.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Our Doctors & Verified Patient Reviews | Uniyal Oro Dental Clinic"
+  description="Meet Dr. Ashish Uniyal (Oral & Dental Surgeon) and Dr. Ashish Lakhera at Uniyal Oro Dental Clinic in Balawala, Dehradun. 4.8★ Google Rating."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-16">
+    <!-- Doctor Profile Spotlight (Anchor #doctors) -->
+    <section id="doctors" class="scroll-mt-28 space-y-10">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#0D9488]">
+          Clinical Credibility & Leadership
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-[#0F2537]">
+          Meet Your Dental Surgeons
+        </h1>
+        <p class="text-sm text-[#475569]">
+          Registered, experienced dental surgeons committed to gentle, pain-free patient care in Balawala and Miyawala.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        <!-- Dr. Ashish Uniyal -->
+        <div class="rounded-3xl border border-[#E2E8F0] bg-white p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-sm card-hover-float">
+          <div class="space-y-5">
+            <div class="flex items-center gap-4">
+              <img
+                src="/images/dr_ashish_uniyal.svg"
+                alt="Dr. Ashish Uniyal Oral & Dental Surgeon"
+                class="w-20 h-20 rounded-2xl object-cover border-2 border-[#0D9488] shadow-sm shrink-0"
+              />
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-[#0D9488] bg-[#E6FFFA] px-2.5 py-0.5 rounded-full border border-[#0D9488]/30">
+                  Lead Dental Surgeon
+                </span>
+                <h2 class="text-xl font-bold text-[#0F2537] mt-1">
+                  Dr. Ashish Uniyal
+                </h2>
+                <p class="text-xs text-[#0D9488] font-semibold">
+                  Oral & Dental Surgeon · HNB Medical University
+                </p>
+              </div>
+            </div>
+
+            <p class="text-xs sm:text-sm text-[#475569] leading-relaxed">
+              Dr. Ashish Uniyal brings over a decade of surgical precision in dental implants, rotary single-sitting root canals, and restorative dentistry. Known for his calm, patient-first demeanor that puts even the most anxious patients at ease.
+            </p>
+
+            <div class="space-y-1.5 text-xs text-[#475569] pt-2 border-t border-[#E2E8F0]">
+              <p><strong class="text-[#0F2537]">Specialty:</strong> Oral Implantology, Single-Sitting RCT, Oral Surgery</p>
+              <p><strong class="text-[#0F2537]">Alma Mater:</strong> H.N.B. Uttarakhand Medical Education University</p>
+              <p><strong class="text-[#0F2537]">Registration:</strong> Regd. No-4135 (State Dental Council)</p>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-[#E2E8F0]">
+            <a
+              href="/contact"
+              class="w-full py-3 px-4 text-center rounded-xl text-xs font-bold text-white bg-[#0D9488] hover:bg-[#0F766E] block transition-colors shadow-xs"
+            >
+              Book Consultation with Dr. Uniyal
+            </a>
+          </div>
+        </div>
+
+        <!-- Dr. Ashish Lakhera -->
+        <div class="rounded-3xl border border-[#E2E8F0] bg-white p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-sm card-hover-float">
+          <div class="space-y-5">
+            <div class="flex items-center gap-4">
+              <img
+                src="/images/dr_ashish_lakhera.svg"
+                alt="Dr. Ashish Lakhera Consultant Dental Surgeon"
+                class="w-20 h-20 rounded-2xl object-cover border-2 border-slate-700 shadow-sm shrink-0"
+              />
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-300">
+                  Consultant Dental Surgeon
+                </span>
+                <h2 class="text-xl font-bold text-[#0F2537] mt-1">
+                  Dr. Ashish Lakhera
+                </h2>
+                <p class="text-xs text-[#475569] font-semibold">
+                  Consultant Dental Surgeon
+                </p>
+              </div>
+            </div>
+
+            <p class="text-xs sm:text-sm text-[#475569] leading-relaxed">
+              Dr. Ashish Lakhera consults on complex full-mouth rehabilitation, cosmetic smile makeovers, and orthodontic care. Together with Dr. Uniyal, they provide comprehensive specialized care in Balawala.
+            </p>
+
+            <div class="space-y-1.5 text-xs text-[#475569] pt-2 border-t border-[#E2E8F0]">
+              <p><strong class="text-[#0F2537]">Specialty:</strong> Aesthetic Dentistry & Full Mouth Rehabilitation</p>
+              <p><strong class="text-[#0F2537]">Focus:</strong> Orthodontics, Cosmetic Smile Designing, Veneers</p>
+              <p><strong class="text-[#0F2537]">Ethics:</strong> Minimal tooth reduction, natural enamel preservation</p>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-[#E2E8F0]">
+            <a
+              href="/contact"
+              class="w-full py-3 px-4 text-center rounded-xl text-xs font-bold text-[#0F2537] bg-white border border-[#E2E8F0] hover:bg-slate-50 block transition-colors shadow-2xs"
+            >
+              Consult with Dr. Lakhera
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Testimonials Carousel -->
+    <Testimonials />
+
+    <!-- Google Map Section -->
+    <GoogleMapSection />
+  </div>
+</Layout>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="doc2-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F1F5F9"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <linearGradient id="coat-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F2537"/>
+      <stop offset="100%" stop-color="#1E3A5F"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#doc2-bg)"/>
+  <circle cx="300" cy="240" r="170" fill="#E2E8F0" opacity="0.8"/>
+
+  <!-- Doctor Silhouette -->
+  <g transform="translate(150, 90)">
+    <ellipse cx="150" cy="190" rx="35" ry="45" fill="#DEB896"/>
+    <ellipse cx="150" cy="140" rx="65" ry="75" fill="#ECCBB0"/>
+    <!-- Hair -->
+    <path d="M85 125 C82 78, 115 52, 150 50 C190 52, 218 78, 215 125 C208 108, 190 92, 150 90 C118 92, 92 108, 85 125 Z" fill="#0F172A"/>
+
+    <!-- Eyes -->
+    <circle cx="125" cy="135" r="4" fill="#0F2537"/>
+    <circle cx="175" cy="135" r="4" fill="#0F2537"/>
+
+    <!-- Smile -->
+    <path d="M132 172 Q150 188 168 172" fill="none" stroke="#9A3412" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Coat -->
+    <path d="M60 270 C80 230, 110 220, 150 220 C190 220, 220 230, 240 270 L280 430 L20 430 Z" fill="url(#coat-grad)"/>
+    <polygon points="125,220 150,285 175,220" fill="#FFFFFF"/>
+    <polygon points="142,220 150,295 158,220" fill="#0D9488"/>
+  </g>
+
+  <!-- Name Card -->
+  <g transform="translate(60, 480)">
+    <rect width="480" height="85" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" filter="drop-shadow(0 8px 16px rgba(15,37,55,0.06))"/>
+    <text x="24" y="32" fill="#0F2537" font-family="system-ui, sans-serif" font-size="18" font-weight="800">Dr. Ashish Lakhera, BDS</text>
+    <text x="24" y="52" fill="#0F2537" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Consultant Dental Surgeon</text>
+    <text x="24" y="70" fill="#475569" font-family="system-ui, sans-serif" font-size="11">Aesthetic Smile Designing &amp; Orthodontic Consultant</text>
+  </g>
+</svg>

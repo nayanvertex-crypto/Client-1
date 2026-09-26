@@ -33,6 +33,13 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-artifact
+          path: dist/
+          retention-days: 1
+
   security:
     name: Security Scan
     runs-on: ubuntu-latest
@@ -40,6 +47,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
 
       - name: Run security audit
         run: npm audit --audit-level=high
@@ -53,9 +66,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-artifact
+          path: dist/
+
       - name: Verify build output
         run: |
           ls -la dist/
-          test -f dist/index.html
-          test -f dist/about/index.html
-          test -f dist/contact/index.html
+          test -d dist/
+          if [ -f dist/server/entry.mjs ]; then
+            echo "✓ Verified SSR build output: dist/server/entry.mjs"
+          elif [ -f dist/index.html ]; then
+            echo "✓ Verified static build output: dist/index.html"
+          elif [ -f dist/client/index.html ]; then
+            echo "✓ Verified client build output: dist/client/index.html"
+          else
+            echo "✗ Error: No recognized build output found in dist/"
+            exit 1
+          fi

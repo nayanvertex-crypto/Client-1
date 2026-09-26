@@ -1,0 +1,332 @@
+---
+// src/pages/treatments.astro
+import DentalVideos from "../components/ui/DentalVideos.astro";
+import Layout from "../layouts/Layout.astro";
+
+const treatmentsList = [
+  {
+    id: "implants",
+    category: "implants",
+    title: "Dental Implants & Full Mouth Rehabilitation",
+    tag: "Specialized Clinical Focus",
+    tagline: "Lifelong titanium tooth roots designed for natural chewing and aesthetics",
+    summary:
+      "Permanent replacement for single missing teeth, multiple teeth bridges, and full-arch all-on-4/6 implants. Computer-guided 3D placement ensures zero guesswork.",
+    procedureSteps: [
+      "Digital 3D CBCT diagnostic bone density assessment and virtual surgical guide planning.",
+      "Minimally invasive keyhole implant fixture placement under profound localized anesthesia.",
+      "Osseointegration healing where titanium fuses with your jawbone to prevent bone resorption.",
+      "Custom CAD/CAM Zirconia crown delivery matching your natural teeth shade and bite force.",
+    ],
+    duration: "45–60 mins surgery · 8–12 weeks natural bone integration",
+    painLevel: "Virtually painless with local numbing · 100% gentle",
+    idealFor: "Missing teeth, loose dentures, fractured non-restorable roots",
+  },
+  {
+    id: "rct",
+    category: "rct",
+    title: "Laser Root Canal Treatment (RCT)",
+    tag: "Single-Sitting & Painless",
+    tagline: "Save your infected tooth in a single 45-minute comfortable visit",
+    summary:
+      "Advanced nickel-titanium rotary endodontics and digital apex locators thoroughly disinfect infected canals, stopping throbbing pain immediately while saving your natural tooth.",
+    procedureSteps: [
+      "Targeted micro-anesthesia eliminating any sensation before instrument contact.",
+      "Gentle removal of inflamed bacterial pulp tissue using computerized rotary instruments.",
+      "Bio-compatible gutta-percha hermetic canal sealing to prevent reinfection.",
+      "Composite core build-up and high-strength protective ceramic crown placement.",
+    ],
+    duration: "45 to 60 minutes in a single comfortable sitting",
+    painLevel: "Immediate pain relief; gentle localized numbing",
+    idealFor: "Severe toothache, sensitivity to hot/cold, deep decay, abscess",
+  },
+  {
+    id: "cosmetic",
+    category: "cosmetic",
+    title: "Smile Designing, Veneers & Teeth Whitening",
+    tag: "Aesthetic Excellence",
+    tagline: "Natural, dazzling smiles customized to your unique facial profile",
+    summary:
+      "Chairside in-office laser whitening, ultrathin ceramic veneers, and composite bonding to mask discoloration, chips, and tooth gaps.",
+    procedureSteps: [
+      "Facial proportion analysis and 3D digital smile simulation.",
+      "Conservative, micro-thin enamel preparation for seamless veneer fit.",
+      "High-translucency ceramic veneer fabrication by master ceramists.",
+      "High-bond resin cementation with natural tooth luster and stain resistance.",
+    ],
+    duration: "Whitening: 45 mins · Veneers: 2 visits over 5–7 days",
+    painLevel: "Zero to minimal discomfort",
+    idealFor: "Stained enamel, midline gaps, chipped incisors, uneven smile",
+  },
+  {
+    id: "orthodontics",
+    category: "orthodontics",
+    title: "Invisible Aligners & Modern Orthodontics",
+    tag: "Discreet Alignment",
+    tagline: "Straighten teeth discreetly without metal wires or food restrictions",
+    summary:
+      "Custom-crafted medical polymer clear aligners and ceramic aesthetic brackets. Removable for meals and brushing, delivering gentle tooth realignment.",
+    procedureSteps: [
+      "High-speed intraoral 3D digital impression (no messy gagging putty).",
+      "Digital treatment video simulation showing week-by-week tooth movement.",
+      "Custom aligner tray series changed every 10–14 days in comfort.",
+      "Post-alignment retention phase ensuring permanent smile stability.",
+    ],
+    duration: "6–14 months average total treatment timeline",
+    painLevel: "Gentle pressure during initial tray changes",
+    idealFor: "Crowded teeth, gaps, rotated teeth, deep bites in teens & adults",
+  },
+  {
+    id: "pediatric",
+    category: "pediatric",
+    title: "Pediatric & Family Preventive Care",
+    tag: "Stress-Free Child Dentistry",
+    tagline: "Cultivating fear-free dental habits for growing smiles",
+    summary:
+      "Child-friendly oral examinations, fluoride enamel varnishes, cavity-preventing fissure sealants, and gentle fillings in an encouraging atmosphere.",
+    procedureSteps: [
+      "Playful 'tell-show-do' orientation to eliminate any fear or hesitation.",
+      "Gentle plaque removal and micro-cleaning.",
+      "Protective enamel sealant application over deep chewing grooves.",
+      "Parental brushing technique guidance and preventive dental check-ups.",
+    ],
+    duration: "25–35 minutes per visit",
+    painLevel: "100% painless, friendly, and fun",
+    idealFor: "Toddlers, school children, teens, and whole-family checkups",
+  },
+  {
+    id: "surgery",
+    category: "surgery",
+    title: "Tooth Extractions & Oral Surgery",
+    tag: "Minimally Invasive",
+    tagline: "Safe, rapid removal of impacted wisdom teeth and diseased roots",
+    summary:
+      "Atraumatic surgical extraction techniques that protect surrounding bone and accelerate gum healing with minimal post-operative swelling.",
+    procedureSteps: [
+      "Digital panoramic X-ray to map nerve proximity and root curvature.",
+      "Profound localized anesthesia with topical pre-numbing gel.",
+      "Gentle sectioning and elevation with specialized micro-instruments.",
+      "Collagen plug placement and dissolvable sutures for clean healing.",
+    ],
+    duration: "15 to 30 minutes",
+    painLevel: "Completely numb throughout; minimal next-day soreness",
+    idealFor: "Impacted wisdom teeth, severe fractures, orthodontic spacing",
+  },
+];
+---
+
+<Layout
+  title="Treatments & Procedures | Uniyal Oro Dental Clinic"
+  description="Explore specialized dental implants, laser root canal, clear aligners, and cosmetic smile designing at Uniyal Oro Dental Clinic in Balawala, Dehradun."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-16">
+    <!-- Header -->
+    <header class="text-center max-w-3xl mx-auto space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E6FFFA] border border-[#0D9488]/30 text-xs font-semibold text-[#0D9488]">
+        <span>🩺 Comprehensive Clinical Treatment Matrix</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#0F2537]">
+        Specialized Dental Treatments
+      </h1>
+      <p class="text-base sm:text-lg text-[#475569] leading-relaxed">
+        From advanced oral implantology to single-sitting painless root canals and invisible aligners, every treatment at Uniyal Oro Dental is delivered with gentle hands, digital precision, and transparent pricing.
+      </p>
+    </header>
+
+    <!-- Category Filter Tabs -->
+    <div class="flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-2xl bg-white border border-[#E2E8F0] shadow-xs max-w-3xl mx-auto">
+      <button
+        type="button"
+        class="filter-tab active-tab px-4 py-2 text-xs font-bold rounded-xl transition-all cursor-pointer bg-[#0D9488] text-white shadow-xs"
+        data-filter="all"
+      >
+        All Procedures
+      </button>
+      <button
+        type="button"
+        class="filter-tab px-4 py-2 text-xs font-semibold rounded-xl text-[#475569] hover:text-[#0F2537] hover:bg-slate-50 transition-all cursor-pointer"
+        data-filter="implants"
+      >
+        Dental Implants
+      </button>
+      <button
+        type="button"
+        class="filter-tab px-4 py-2 text-xs font-semibold rounded-xl text-[#475569] hover:text-[#0F2537] hover:bg-slate-50 transition-all cursor-pointer"
+        data-filter="rct"
+      >
+        Laser RCT
+      </button>
+      <button
+        type="button"
+        class="filter-tab px-4 py-2 text-xs font-semibold rounded-xl text-[#475569] hover:text-[#0F2537] hover:bg-slate-50 transition-all cursor-pointer"
+        data-filter="orthodontics"
+      >
+        Clear Aligners
+      </button>
+      <button
+        type="button"
+        class="filter-tab px-4 py-2 text-xs font-semibold rounded-xl text-[#475569] hover:text-[#0F2537] hover:bg-slate-50 transition-all cursor-pointer"
+        data-filter="cosmetic"
+      >
+        Smile Design
+      </button>
+      <button
+        type="button"
+        class="filter-tab px-4 py-2 text-xs font-semibold rounded-xl text-[#475569] hover:text-[#0F2537] hover:bg-slate-50 transition-all cursor-pointer"
+        data-filter="pediatric"
+      >
+        Pediatric Care
+      </button>
+      <button
+        type="button"
+        class="filter-tab px-4 py-2 text-xs font-semibold rounded-xl text-[#475569] hover:text-[#0F2537] hover:bg-slate-50 transition-all cursor-pointer"
+        data-filter="surgery"
+      >
+        Oral Surgery
+      </button>
+    </div>
+
+    <!-- Treatment Cards Grid with Anchor Targets -->
+    <div id="treatments-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {treatmentsList.map((t) => (
+        <article
+          class="treatment-card card-hover-float rounded-2xl border border-[#E2E8F0] bg-white p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-sm scroll-mt-28"
+          data-category={t.category}
+          id={t.id}
+        >
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-[#0D9488] bg-[#E6FFFA] px-3 py-1 rounded-full border border-[#0D9488]/30">
+                {t.tag}
+              </span>
+              <span class="text-xs text-[#0D9488] font-semibold flex items-center gap-1">
+                <span>✓</span> 100% Sterilized
+              </span>
+            </div>
+
+            <h2 class="text-2xl font-bold tracking-tight text-[#0F2537]">
+              {t.title}
+            </h2>
+
+            <p class="text-xs font-semibold text-[#0D9488]">
+              {t.tagline}
+            </p>
+
+            <p class="text-sm text-[#475569] leading-relaxed">
+              {t.summary}
+            </p>
+
+            <!-- Clinical Workflow -->
+            <div class="space-y-2 pt-2 border-t border-[#E2E8F0]">
+              <p class="text-xs font-bold uppercase tracking-wider text-[#0F2537]">
+                Clinical Workflow:
+              </p>
+              <ol class="space-y-1.5 pl-4 list-decimal text-xs text-[#475569]">
+                {t.procedureSteps.map((step) => (
+                  <li>{step}</li>
+                ))}
+              </ol>
+            </div>
+
+            <!-- Parameters Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-[#E2E8F0] text-xs">
+              <div class="p-3 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0]">
+                <span class="text-[11px] text-[#475569] block font-medium">Duration:</span>
+                <span class="font-bold text-[#0F2537]">{t.duration}</span>
+              </div>
+              <div class="p-3 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0]">
+                <span class="text-[11px] text-[#475569] block font-medium">Comfort:</span>
+                <span class="font-bold text-[#0D9488]">{t.painLevel}</span>
+              </div>
+            </div>
+
+            <p class="text-xs text-[#475569]">
+              <strong class="text-[#0F2537]">Recommended for:</strong> {t.idealFor}
+            </p>
+          </div>
+
+          <!-- CTAs -->
+          <div class="pt-4 border-t border-[#E2E8F0] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+            <a
+              href="/contact"
+              class="px-5 py-2.5 rounded-xl text-center text-xs font-bold text-white bg-[#0D9488] hover:bg-[#0F766E] shadow-xs transition-colors"
+            >
+              Book Consultation
+            </a>
+            <a
+              href={`https://wa.me/917018021512?text=Hello%20Dr.%20Uniyal,%20I%20would%20like%20to%20know%20more%20about%20${encodeURIComponent(t.title)}%20at%20your%20Balawala%20clinic.`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-5 py-2.5 rounded-xl text-center text-xs font-bold text-white bg-[#25D366] hover:bg-emerald-600 shadow-xs inline-flex items-center justify-center gap-1.5 transition-colors"
+            >
+              <span>WhatsApp Query</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Educational 3D Animated Simulation Section -->
+    <DentalVideos />
+
+    <!-- Assurance Banner -->
+    <div class="rounded-3xl border border-[#E2E8F0] bg-white p-8 sm:p-12 shadow-sm text-center space-y-4 max-w-3xl mx-auto">
+      <span class="text-xs font-bold uppercase tracking-wider text-[#0D9488]">
+        Transparent Care Guarantee
+      </span>
+      <h3 class="text-2xl font-bold text-[#0F2537]">
+        Unsure Which Treatment You Need?
+      </h3>
+      <p class="text-sm text-[#475569] leading-relaxed">
+        Visit Dr. Ashish Uniyal for an unhurried clinical examination and digital scan. We explain every option openly and never prescribe treatments you do not require.
+      </p>
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a
+          href="/contact"
+          class="px-6 py-3 rounded-xl font-bold text-xs text-white bg-[#0D9488] hover:bg-[#0F766E] shadow-sm transition-colors"
+        >
+          Schedule Examination (Near Malsi Puliya)
+        </a>
+        <a
+          href="tel:+917018021512"
+          class="px-6 py-3 rounded-xl font-bold text-xs text-[#0F2537] bg-[#F8FAFC] border border-[#E2E8F0] hover:bg-slate-100 transition-colors"
+        >
+          📞 Call: +91 70180 21512
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  function setupTreatmentFilter() {
+    const filterButtons = document.querySelectorAll(".filter-tab");
+    const cards = document.querySelectorAll(".treatment-card");
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const filter = btn.getAttribute("data-filter");
+
+        filterButtons.forEach((b) => {
+          b.classList.remove("active-tab", "bg-[#0D9488]", "text-white", "shadow-xs");
+          b.classList.add("text-[#475569]");
+        });
+
+        btn.classList.add("active-tab", "bg-[#0D9488]", "text-white", "shadow-xs");
+        btn.classList.remove("text-[#475569]");
+
+        cards.forEach((card) => {
+          const category = card.getAttribute("data-category");
+          if (filter === "all" || category === filter) {
+            (card as HTMLElement).style.display = "flex";
+          } else {
+            (card as HTMLElement).style.display = "none";
+          }
+        });
+      });
+    });
+  }
+
+  setupTreatmentFilter();
+  document.addEventListener("astro:after-swap", setupTreatmentFilter);
+</script>

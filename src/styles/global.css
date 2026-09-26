@@ -2,39 +2,39 @@
 @import "tailwindcss";
 
 @theme {
-  --color-canvas: #F8FAFC;
-  --color-canvas-subtle: #F1F5F9;
-  --color-surface-card: #FFFFFF;
-  --color-border-subtle: #E2E8F0;
-  --color-border-hover: #CBD5E1;
-  --color-text-primary: #0F2537;
+  --color-canvas: #f8fafc;
+  --color-canvas-subtle: #f1f5f9;
+  --color-surface-card: #ffffff;
+  --color-border-subtle: #e2e8f0;
+  --color-border-hover: #cbd5e1;
+  --color-text-primary: #0f2537;
   --color-text-secondary: #475569;
-  --color-teal-primary: #0D9488;
-  --color-teal-hover: #0F766E;
-  --color-teal-light: #E6FFFA;
-  --color-amber-trust: #D97706;
-  --color-coral-alert: #E11D48;
-  --color-whatsapp: #25D366;
+  --color-teal-primary: #0d9488;
+  --color-teal-hover: #0f766e;
+  --color-teal-light: #e6fffa;
+  --color-amber-trust: #d97706;
+  --color-coral-alert: #e11d48;
+  --color-whatsapp: #25d366;
 }
 
 :root {
-  --color-canvas: #F8FAFC;
-  --color-canvas-subtle: #F1F5F9;
-  --color-surface: #FFFFFF;
-  --color-surface-elevated: #F8FAFC;
-  --color-border: #E2E8F0;
-  --color-border-hover: #CBD5E1;
-  --color-text-main: #0F2537;
+  --color-canvas: #f8fafc;
+  --color-canvas-subtle: #f1f5f9;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-border-hover: #cbd5e1;
+  --color-text-main: #0f2537;
   --color-text-muted: #475569;
-  --color-primary-cyan: #0D9488;
-  --color-primary-cyan-hover: #0F766E;
-  --color-accent: #0D9488;
-  --color-accent-emerald: #25D366;
-  --color-amber-trust: #D97706;
-  --color-coral-alert: #E11D48;
-  --color-danger: #E11D48;
-  --color-success: #0D9488;
-  --color-warning: #D97706;
+  --color-primary-cyan: #0d9488;
+  --color-primary-cyan-hover: #0f766e;
+  --color-accent: #0d9488;
+  --color-accent-emerald: #25d366;
+  --color-amber-trust: #d97706;
+  --color-coral-alert: #e11d48;
+  --color-danger: #e11d48;
+  --color-success: #0d9488;
+  --color-warning: #d97706;
 }
 
 @layer base {
@@ -47,18 +47,19 @@
   }
 
   html {
-    font-family: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
-    background-color: #F8FAFC;
-    color: #0F2537;
+    background-color: #f8fafc;
+    color: #0f2537;
   }
 
   body {
-    background-color: #F8FAFC;
-    color: #0F2537;
+    background-color: #f8fafc;
+    color: #0f2537;
     min-height: 100dvh;
     overflow-x: hidden;
   }
@@ -76,18 +77,20 @@
 
 /* Card Hover Float Animation */
 .card-hover-float {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s
+    cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
 }
 
 .card-hover-float:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 28px -6px rgba(15, 37, 55, 0.08);
-  border-color: #0D9488;
+  border-color: #0d9488;
 }
 
 /* Eye-Catching Soft Pulse Glow */
 @keyframes softPulseGlow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 15px -3px rgba(13, 148, 136, 0.25);
   }
   50% {
@@ -101,7 +104,8 @@
 
 /* Subtle float animation */
 @keyframes floatGentle {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {

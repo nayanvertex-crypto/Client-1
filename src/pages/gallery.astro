@@ -1,0 +1,114 @@
+---
+// src/pages/gallery.astro
+import Layout from "../layouts/Layout.astro";
+
+const cases = [
+  {
+    title: "Anterior Teeth Crowding Correction",
+    treatment: "Clear Aligners Therapy",
+    duration: "7.5 Months",
+    patientAge: "26 years",
+    outcome:
+      "Complete alignment of upper and lower crowded anterior incisors without tooth extractions. Class I bite relationship restored.",
+    badge: "Orthodontics",
+    imgSrc: "/images/clear_aligners.svg",
+  },
+  {
+    title: "Molar Tooth Replacement via Immediate Implant",
+    treatment: "Titanium Dental Implant + Zirconia Crown",
+    duration: "10 Weeks Osseointegration",
+    patientAge: "42 years",
+    outcome:
+      "Fractured non-restorable lower molar replaced with Swiss-grade titanium implant and custom-milled screw-retained Zirconia crown.",
+    badge: "Implantology",
+    imgSrc: "/images/implant_procedure.svg",
+  },
+  {
+    title: "Deep Decay Tooth Salvage with Aesthetic Crown",
+    treatment: "Single-Sitting Painless RCT + CAD/CAM Crown",
+    duration: "Single 55-minute sitting",
+    patientAge: "34 years",
+    outcome:
+      "Acute throbbing pain eliminated immediately through rotary canal disinfection followed by high-strength ceramic crown placement.",
+    badge: "Endodontics",
+    imgSrc: "/images/dental_operatory.svg",
+  },
+  {
+    title: "Midline Gap Closure & Discoloration Masking",
+    treatment: "Cosmetic Porcelain Veneers (6 Units)",
+    duration: "2 clinical visits (6 days)",
+    patientAge: "29 years",
+    outcome:
+      "Midline diastema closed and deep discoloration masked with ultrathin porcelain veneers harmonizing with natural facial symmetry.",
+    badge: "Smile Design",
+    imgSrc: "/images/clear_aligners.svg",
+  },
+];
+---
+
+<Layout
+  title="Before & After Smile Transformations | Uniyal Oro Dental"
+  description="Explore real patient transformations, dental implant restorations, and clear aligner results from Uniyal Oro Dental Clinic in Balawala, Dehradun."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-16">
+    <header class="text-center max-w-3xl mx-auto space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E6FFFA] border border-[#0D9488]/30 text-xs font-semibold text-[#0D9488]">
+        <span>✨ Clinical Outcomes & Smile Makeovers</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#0F2537]">
+        Real Smile Transformations
+      </h1>
+      <p class="text-base sm:text-lg text-[#475569] leading-relaxed">
+        See how precision implantology, clear aligners, and aesthetic restorations bring back chewing power, confidence, and radiant smiles for families in Dehradun.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {cases.map((c) => (
+        <article class="rounded-3xl border border-[#E2E8F0] bg-white p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-sm card-hover-float">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-[#0D9488] bg-[#E6FFFA] px-3 py-1 rounded-full border border-[#0D9488]/30">
+                {c.badge}
+              </span>
+              <span class="text-xs text-[#475569] font-medium">Patient Age: {c.patientAge}</span>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden border border-[#E2E8F0] bg-slate-50 h-56 flex items-center justify-center">
+              <img
+                src={c.imgSrc}
+                alt={c.title}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            <h2 class="text-xl font-bold text-[#0F2537] tracking-tight">
+              {c.title}
+            </h2>
+
+            <div class="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] space-y-1 text-xs">
+              <span class="font-bold text-[#0D9488] block">{c.treatment}</span>
+              <span class="text-[#475569] block">Timeline: {c.duration}</span>
+            </div>
+
+            <p class="text-xs sm:text-sm text-[#475569] leading-relaxed">
+              {c.outcome}
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-[#E2E8F0] flex items-center justify-between">
+            <a
+              href="/contact"
+              class="text-xs font-bold text-[#0D9488] hover:text-[#0F766E] inline-flex items-center gap-1 group"
+            >
+              <span>Consult on Similar Case</span>
+              <span class="transition-transform group-hover:translate-x-1">→</span>
+            </a>
+            <span class="text-[11px] text-[#475569]">Balawala Clinic</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>
